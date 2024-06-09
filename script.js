@@ -12,11 +12,18 @@ document.addEventListener('DOMContentLoaded', function() {
         var bannerBounding = banner.getBoundingClientRect();
 
 
-        if(isInTheViewport(testo1)) {
-            testo1.style.animation = "fadeIn 3s forwards";
+        if(isInTheViewport(testo1) && !testo1.style.animation.includes("fadeIn")) {
+            testo1.style.animation = "none";
+            setTimeout(function() {
+                testo1.style.animation = "fadeIn 2s forwards";
+            }, 0);
         }
-        if(testo1.getBoundingClientRect().bottom >= viewportHeight) {
-            testo1.style.animation = "fadeOut 3s forwards";
+
+        if(testo1.getBoundingClientRect().bottom >= viewportHeight && !testo1.style.animation.includes("fadeOut")) {
+            testo1.style.animation = "none";
+            setTimeout(function() {
+                testo1.style.animation = "fadeOut 2s forwards";
+            }, 0);
         }
 
 
