@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var menu = document.getElementById('menu');
     var viewportHeight = window.innerHeight;
     
+
     document.addEventListener('scroll', function(e) {
         var homepageBounding = homepage.getBoundingClientRect();
         var bannerBounding = banner.getBoundingClientRect();
