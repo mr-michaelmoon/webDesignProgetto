@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var viewportHeight = window.innerHeight;
     banner.style.height = window.screen.height + "px";
     banner.style.width = window.screen.width + "px";
+    homepage.style.width = window.screen.width + "px";
 
     document.addEventListener('scroll', function(e) {
         var homepageBounding = homepage.getBoundingClientRect();
