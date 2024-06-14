@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     var homepage = document.getElementById('homepage');
     var banner = document.getElementById('banner');
+    var insiemeFramesBanner = document.getElementById('insiemeFramesBanner');
     var testo1 = document.getElementById('testo1');
     var menu = document.getElementById('menu');
     var viewportHeight = window.innerHeight;
@@ -10,6 +11,11 @@ document.addEventListener('DOMContentLoaded', function() {
     banner.style.width = window.screen.width + "px";
     homepage.style.width = window.screen.width + "px";
 
+    // creazione frame delle immagini del banner 
+    for(var i = 2; i< 32; i++) {
+        insiemeFramesBanner.innerHTML += "<div class='frameBanner'><img src='images/framesBanner/frame-" + i + ".png' /></div>";
+    }
+    
     document.addEventListener('scroll', function(e) {
         var homepageBounding = homepage.getBoundingClientRect();
         var bannerBounding = banner.getBoundingClientRect();
