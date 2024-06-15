@@ -1,9 +1,12 @@
 const numFrames = 32;
+let lastScrollTop = 0;
+let scrollDirection = 0;
+
 document.addEventListener('DOMContentLoaded', function() {
 
     var homepage = document.getElementById('homepage');
     var banner = document.getElementById('banner');
-    var bannerAltezza = document.getElementById('bannerAltezza');
+    var bannerContainer = document.getElementById('bannerContainer');
     var insiemeFramesBanner = document.getElementById('insiemeFramesBanner');
     var frameBanner = document.getElementsByClassName('frameBanner');
     var birdContainer = document.getElementById('birdContainer');
@@ -25,20 +28,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
     window.onload = function() {
         var bannerWidth = banner.offsetWidth;
-        bannerAltezza.style.height = numFrames * viewportWidth  + "px";
+        bannerContainer.style.height = (numFrames-3) * viewportWidth  + "px"; 
         birdContainer.style.width = window.screen.width + "px";
     }
 
     window.onresize = function() {
         var bannerWidth = banner.offsetWidth;
-        bannerAltezza.style.height = bannerWidth + "px";
-    }
+        bannerContainer.style.height = numFrames * viewportWidth + "px";
+        if(banner.style.position == "fixed") {
 
+        }
+    }
 
     
     document.addEventListener('scroll', function(e) {
         var homepageBounding = homepage.getBoundingClientRect();
         var bannerBounding = banner.getBoundingClientRect();
+        var bannerContainerBounding = bannerContainer.getBoundingClientRect();
+        var birdBounding = bird.getBoundingClientRect();
+        var scrollTop = window.scrollY || document.documentElement.scrollTop;
+        scrollDirection = scrollTop > lastScrollTop ? 1 : -1;
 
 
         if(isInTheViewport(testo1) && !testo1.style.animation.includes("fadeIn")) {
@@ -54,8 +63,26 @@ document.addEventListener('DOMContentLoaded', function() {
                 testo1.style.animation = "fadeOut 2s forwards";
             }, 0);
         }
+        
+        if(birdBounding.top <= viewportHeight/2) {
+            banner.style.position = "fixed";
+            banner.style.top = "0";
+            banner.style.left = "0";
 
+            if(bannerContainerBounding.top >=0) {
+                banner.style.position = "relative";
+                banner.style.top = "0";
+                banner.style.left = "0";
+            }
 
+            
+        }
+        
+        if(bannerContainerBounding.bottom >= viewportHeight && banner.style.position == "fixed") {
+            // banner.style.left = (bannerContainerBounding.top / (bannerContainer.offsetHeight - viewportHeight) * bannerContainer.offsetHeight) + "px";
+            banner.style.left = (bannerContainerBounding.top / (bannerContainer.offsetHeight -viewportHeight) * bannerContainer.offsetHeight) + "px";
+            // console.log(bannerContainerBounding.top + " " +  bannerContainer.offsetHeight +  " " + viewportHeight + " " + ((bannerContainerBounding.top / (bannerContainer.offsetHeight - viewportHeight)) * ((numFrames-2) * 100)));
+        }
     
     });
 });

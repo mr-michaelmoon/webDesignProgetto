@@ -1,6 +1,6 @@
 html, body {
     margin: 0;
-    /* overflow-x: hidden; */
+    overflow-x: hidden;
 }
 
 html {
@@ -39,7 +39,7 @@ p {
 
 /* ----------------------banner--------------------------------. */
 
-#bannerAltezza {
+#bannerContainer {
     position: relative;
 
 }
@@ -137,9 +137,10 @@ menu a img {
     background-position: center;
     background-size: cover;
     position: absolute;
-    top: 25%;
-    height: 50%;
-    width: 4.2vh;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 70vh;
+    width: 5vh;
     display: flex;
     align-items: center;
     flex-direction: column;
