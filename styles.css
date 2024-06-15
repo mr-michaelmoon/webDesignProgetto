@@ -21,18 +21,32 @@ p {
 }
 
 #homepage {
-    min-height: 150vh;
+    min-height: 100vh;
     width: 100vw;
-    background-image: url("images/homepage.png");
+    /* background-image: url("images/homepageProva16_9.png");
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: left bottom; */
     margin-bottom: -1px;
-    background-position: left bottom;
+    position: relative;
+}
+
+#homepage img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ----------------------banner--------------------------------. */
+
+#bannerAltezza {
+    position: relative;
 
 }
-/* ----------------------banner--------------------------------. */
+
 #banner {
     height: 100vh;
+    width: 100%;
     position:relative;
 }
 
@@ -44,13 +58,13 @@ p {
 
 .frameBanner {
     height: 100%;
-    width: 100vw;
-    background-repeat: no-repeat;
-    background-size: cover;
+    width: auto;
+    flex: none;
     
 }
+
 .frameBanner img {
-    width: 100vw;
+    width: auto;
     height: 100%;
     object-fit: cover;
 }
@@ -64,11 +78,20 @@ p {
     right: 10%;
 }
 
+#birdContainer {
+height: 100%;
+width: 100%;
+width: auto;
+position: absolute;
+top: 0;
+z-index: 2;
+}
+
 .birds {
     height: 50%;
-    position: absolute;
-    top:55vh;
-    left: 50vw;
+    position: relative;
+    top:50%;
+    left: 50%;
     transform: translate(-50%, -50%);
 }
 
