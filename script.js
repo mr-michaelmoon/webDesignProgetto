@@ -2,7 +2,7 @@ const numFrames = 32;
 let lastScrollTop = 0;
 let scrollDirection = 0;
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
 
     var homepage = document.getElementById('homepage');
     var banner = document.getElementById('banner');
@@ -20,28 +20,28 @@ document.addEventListener('DOMContentLoaded', function() {
     homepage.style.width = window.screen.width + "px";
 
     // creazione frame delle immagini del banner 
-    for(var i = 2; i< numFrames; i++) {
-        insiemeFramesBanner.innerHTML += "<div class='frameBanner'><img draggable='false' src='images/framesBanner/frame-" + i + ".png' /></div>";
-        
-    }
-    
+    createFramesBanner(insiemeFramesBanner)
 
-    window.onload = function() {
-        var bannerWidth = banner.offsetWidth;
-        bannerContainer.style.height = (numFrames-3) * viewportWidth  + "px"; 
+    menu.style.opacity = "0";
+
+    //si attiva quando si ricarica la pagina
+    window.onload = function () {
+        viewportWidth = window.innerWidth;
+        bannerContainer.style.height = (numFrames - 2) * window.screen.width - viewportWidth + "px";
         birdContainer.style.width = window.screen.width + "px";
+        menuAnimation(bird.getBoundingClientRect().top, menu, viewportHeight)
+    }
+    //si attiva quando si modifica la dimensione della finestra
+    window.onresize = function () {
+        viewportWidth = window.innerWidth;
+        bannerContainer.style.height = (numFrames - 2) * window.screen.width - viewportWidth + "px";
+        console.log(bannerContainer.style.height)
+        birdContainer.style.width = window.screen.width + "px";
+
     }
 
-    window.onresize = function() {
-        var bannerWidth = banner.offsetWidth;
-        bannerContainer.style.height = numFrames * viewportWidth + "px";
-        if(banner.style.position == "fixed") {
 
-        }
-    }
-
-    
-    document.addEventListener('scroll', function(e) {
+    document.addEventListener('scroll', function (e) {
         var homepageBounding = homepage.getBoundingClientRect();
         var bannerBounding = banner.getBoundingClientRect();
         var bannerContainerBounding = bannerContainer.getBoundingClientRect();
@@ -49,44 +49,71 @@ document.addEventListener('DOMContentLoaded', function() {
         var scrollTop = window.scrollY || document.documentElement.scrollTop;
         scrollDirection = scrollTop > lastScrollTop ? 1 : -1;
 
-
-        if(isInTheViewport(testo1) && !testo1.style.animation.includes("fadeIn")) {
+        //animazione del testo da correggere
+        if (isInTheViewport(testo1) && !testo1.style.animation.includes("fadeIn")) {
             testo1.style.animation = "none";
-            setTimeout(function() {
-                testo1.style.animation = "fadeIn 2s forwards";
+            setTimeout(function () {
+                testo1.style.animation = "fadeIn 1s forwards";
             }, 0);
         }
 
-        if(testo1.getBoundingClientRect().bottom >= viewportHeight && !testo1.style.animation.includes("fadeOut")) {
+        if (testo1.getBoundingClientRect().bottom >= viewportHeight && !testo1.style.animation.includes("fadeOut")) {
             testo1.style.animation = "none";
-            setTimeout(function() {
-                testo1.style.animation = "fadeOut 2s forwards";
+            setTimeout(function () {
+                testo1.style.animation = "fadeOut 1s forwards";
             }, 0);
         }
-        
-        if(birdBounding.top <= viewportHeight/2) {
+
+
+
+        if (birdBounding.top <= viewportHeight / 2) {
             banner.style.position = "fixed";
             banner.style.top = "0";
             banner.style.left = "0";
 
-            if(bannerContainerBounding.top >=0) {
+            if (bannerContainerBounding.top >= 0) {
                 banner.style.position = "relative";
                 banner.style.top = "0";
                 banner.style.left = "0";
             }
 
-            
         }
-        
-        if(bannerContainerBounding.bottom >= viewportHeight && banner.style.position == "fixed") {
-            // banner.style.left = (bannerContainerBounding.top / (bannerContainer.offsetHeight - viewportHeight) * bannerContainer.offsetHeight) + "px";
-            banner.style.left = (bannerContainerBounding.top / (bannerContainer.offsetHeight -viewportHeight) * bannerContainer.offsetHeight) + "px";
-            // console.log(bannerContainerBounding.top + " " +  bannerContainer.offsetHeight +  " " + viewportHeight + " " + ((bannerContainerBounding.top / (bannerContainer.offsetHeight - viewportHeight)) * ((numFrames-2) * 100)));
-        }
-    
+
+
+        menuAnimation(birdBounding.top, menu, viewportHeight);
+
+
+        horizontalScroll(bannerContainerBounding, banner, viewportHeight)
+
     });
 });
 
+
+
+
 function isInTheViewport(element) {
     return element.getBoundingClientRect().top >= 0 && element.getBoundingClientRect().bottom <= window.innerHeight;
+}
+
+function menuAnimation(birdBoundingT, menu, viewportHeight) {
+
+
+    if (birdBoundingT > viewportHeight / 2 && menu.style.left >= 0) {
+        menu.style.animation = "slide-out 1s forwards";
+    } else {
+        menu.style.opacity = "1";
+        menu.style.animation = "slide-in 1s forwards";
+    }
+}
+
+function createFramesBanner(insiemeFramesBanner) {
+    for (var i = 2; i < numFrames; i++) {
+        insiemeFramesBanner.innerHTML += "<div class='frameBanner'><img draggable='false' src='images/framesBanner/frame-" + i + ".png' /></div>";
+    }
+}
+
+function horizontalScroll(bannerContainerBounding, banner, viewportHeight) {
+    if (bannerContainerBounding.bottom >= viewportHeight && banner.style.position == "fixed") {
+        banner.style.left = (bannerContainerBounding.top / (bannerContainer.offsetHeight - viewportHeight) * bannerContainer.offsetHeight) + "px";
+    }
 }

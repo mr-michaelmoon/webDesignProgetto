@@ -136,8 +136,8 @@ menu a img {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    position: absolute;
-    top: 50%;
+    position: fixed;
+    top: 50vh;
     transform: translateY(-50%);
     height: 70vh;
     width: 5vh;
@@ -145,7 +145,7 @@ menu a img {
     align-items: center;
     flex-direction: column;
     justify-content: center;
-
+    left: -100%;
 }
 
 menu li a img {
@@ -172,5 +172,23 @@ menu li a img {
     }
     to {
         opacity: 0;
+    }
+}
+
+@keyframes slide-in {
+    from {
+        left: -100%;
+    }
+    to {
+        left: 0; 
+    }
+}
+
+@keyframes slide-out {
+    from {
+        left: 0;
+    }
+    to {
+        left: -100%; 
     }
 }
