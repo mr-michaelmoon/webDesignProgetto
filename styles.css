@@ -78,7 +78,7 @@ p {
     right: 10%;
 }
 
-#birdContainer {
+#sittingBirdContainer {
 height: 100%;
 width: 100%;
 width: auto;
@@ -92,6 +92,14 @@ z-index: 2;
     position: relative;
     top:50%;
     left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#birdContainer {
+    position: fixed;
+    display: none;
+    top: 50vh;
+    left: 50vw;
     transform: translate(-50%, -50%);
 }
 
