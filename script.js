@@ -138,8 +138,9 @@ function birdAnimation(bannerBoundingLeft, sittingBird, birdContainer, birdImgSt
     let halfViewportWidth = viewportWidth / 2;
     var scrollTop = window.scrollY || document.documentElement.scrollTop;
 
-    if(Math.abs(bannerBoundingLeft) >= halfViewportWidth) {
-        sittingBird.style.display = "none";
+    if(sittingBird.getBoundingClientRect().left + (sittingBird.offsetWidth/2) < halfViewportWidth) {
+    // if(Math.abs(bannerBoundingLeft) >= halfViewportWidth) {
+        sittingBird.style.opacity = "0";
         birdContainer.style.display = "block";
         const value = 50; // quantita di scroll per cambiare uccello
         let bannerContainerDividedValue = bannerContainer.offsetHeight / value;
@@ -158,13 +159,13 @@ function birdAnimation(bannerBoundingLeft, sittingBird, birdContainer, birdImgSt
                 lastScrollTop = scrollTop;
             
         }
-        if(Math.abs(bannerBoundingLeft) >= halfViewportWidth && Math.abs(bannerBoundingLeft) <= bannerContainerDividedValue) {
+        if( Math.abs(bannerBoundingLeft) <= bannerContainerDividedValue) {
             birdImgStory.src = "images/rondine/rondineWebp/rondineAlzata.webp";
         }
         
 
     } else {
-        sittingBird.style.display = "block";
+        sittingBird.style.opacity = "1";
         birdContainer.style.display = "none";
     }
 }
