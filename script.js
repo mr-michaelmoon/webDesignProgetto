@@ -1,6 +1,5 @@
 const numFrames = 32;
 let lastScrollTop = 0;
-let scrollDirection = 0;
 
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -28,21 +27,25 @@ document.addEventListener('DOMContentLoaded', function () {
 
     //si attiva quando si ricarica la pagina
     window.onload = function () {
+        
         viewportWidth = window.innerWidth;
         bannerContainer.style.height = (numFrames - 2) * window.screen.width - viewportWidth + "px";
         sittingBirdContainer.style.width = window.screen.width + "px";
-        menuAnimation(sittingBird.getBoundingClientRect().top, menu, viewportHeight)
+        menuAnimation(sittingBird.getBoundingClientRect().top, menu, viewportHeight);
+        
+        window.requestAnimationFrame(() => {
+            var bannerBounding = document.getElementById('banner').getBoundingClientRect();
+            birdAnimation(bannerBounding.left, sittingBird, birdContainer, birdImgStory, viewportWidth)
+        });
     }
     //si attiva quando si modifica la dimensione della finestra
     window.onresize = function () {
         viewportWidth = window.innerWidth;
         var vh = Math.abs(viewportHeight - window.innerHeight); // calcolo differenza tra viewportHeight vecchio e quello nuovo
-        // window.alert();
         bannerContainer.style.height = (numFrames - 2) * window.screen.width - viewportWidth + vh + "px";
         sittingBirdContainer.style.width = window.screen.width + "px";
         banner.style.top = "50%";
             banner.style.transform = "translateY(-50%)";
-
     }
 
 
@@ -51,8 +54,7 @@ document.addEventListener('DOMContentLoaded', function () {
         var bannerBounding = banner.getBoundingClientRect();
         var bannerContainerBounding = bannerContainer.getBoundingClientRect();
         var sittingBirdBounding = sittingBird.getBoundingClientRect();
-        var scrollTop = window.scrollY || document.documentElement.scrollTop;
-        scrollDirection = scrollTop > lastScrollTop ? 1 : -1;
+        
 
         //animazione del testo da correggere
         if (isInTheViewport(testo1) && !testo1.style.animation.includes("fadeIn")) {
@@ -89,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             }
 
-            birdAnimation(bannerBounding.left, sittingBird, birdContainer, birdImgStory, scrollTop, viewportWidth);
+            birdAnimation(bannerBounding.left, sittingBird, birdContainer, birdImgStory, viewportWidth);
 
         }
 
@@ -102,13 +104,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-
+// funzioni -------------------------------------------------------
 function isInTheViewport(element) {
     return element.getBoundingClientRect().top >= 0 && element.getBoundingClientRect().bottom <= window.innerHeight;
 }
 
 function menuAnimation(birdBoundingT, menu, viewportHeight) {
-
 
     if (birdBoundingT > viewportHeight / 2 && menu.style.left >= 0) {
         menu.style.animation = "slide-out 1s forwards";
@@ -133,8 +134,10 @@ function horizontalScroll(bannerContainerBounding, banner, viewportHeight) {
     }
 }
 
-function birdAnimation(bannerBoundingLeft, sittingBird, birdContainer, birdImgStory, scrollTop, viewportWidth) {
+function birdAnimation(bannerBoundingLeft, sittingBird, birdContainer, birdImgStory, viewportWidth) {
     let halfViewportWidth = viewportWidth / 2;
+    var scrollTop = window.scrollY || document.documentElement.scrollTop;
+
     if(Math.abs(bannerBoundingLeft) >= halfViewportWidth) {
         sittingBird.style.display = "none";
         birdContainer.style.display = "block";
