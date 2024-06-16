@@ -34,9 +34,12 @@ document.addEventListener('DOMContentLoaded', function () {
     //si attiva quando si modifica la dimensione della finestra
     window.onresize = function () {
         viewportWidth = window.innerWidth;
-        bannerContainer.style.height = (numFrames - 2) * window.screen.width - viewportWidth + "px";
-        console.log(bannerContainer.style.height)
+        var vh = Math.abs(viewportHeight - window.innerHeight); // calcolo differenza tra viewportHeight vecchio e quello nuovo
+        // window.alert();
+        bannerContainer.style.height = (numFrames - 2) * window.screen.width - viewportWidth + vh + "px";
         birdContainer.style.width = window.screen.width + "px";
+        banner.style.top = "50%";
+            banner.style.transform = "translateY(-50%)";
 
     }
 
@@ -67,14 +70,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
         if (birdBounding.top <= viewportHeight / 2) {
+            if(banner.style.position != "fixed")
+                banner.style.left = "0";
+            
             banner.style.position = "fixed";
-            banner.style.top = "0";
-            banner.style.left = "0";
+            
+            banner.style.top = "50%";
+            banner.style.transform = "translateY(-50%)";
+
 
             if (bannerContainerBounding.top >= 0) {
                 banner.style.position = "relative";
-                banner.style.top = "0";
                 banner.style.left = "0";
+                banner.style.top = "0";
+                banner.style.transform = "translateY(0)";
             }
 
         }
@@ -82,8 +91,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         menuAnimation(birdBounding.top, menu, viewportHeight);
 
-
-        horizontalScroll(bannerContainerBounding, banner, viewportHeight)
+            horizontalScroll(bannerContainerBounding, banner, viewportHeight)
 
     });
 });
@@ -115,5 +123,8 @@ function createFramesBanner(insiemeFramesBanner) {
 function horizontalScroll(bannerContainerBounding, banner, viewportHeight) {
     if (bannerContainerBounding.bottom >= viewportHeight && banner.style.position == "fixed") {
         banner.style.left = (bannerContainerBounding.top / (bannerContainer.offsetHeight - viewportHeight) * bannerContainer.offsetHeight) + "px";
+        if(Math.abs(banner.style.left) >= bannerContainer.offsetHeight) {
+            banner.style.left = bannerContainer.offsetHeight + "px";
+        }
     }
 }
