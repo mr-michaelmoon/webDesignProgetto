@@ -150,17 +150,17 @@ function birdAnimation(bannerBoundingLeft, sittingBird, birdContainer, birdImgSt
         if(Math.abs(scrollTop - lastScrollTop) >= bannerContainerDividedValue ) {
             
                 if(birdImgStory.src.includes("AliSu") || birdImgStory.src.includes("Alzata")) {
-                    birdImgStory.src = "images/rondine/rondineWebp/rondineAliGiu.webp";
+                    birdImgStory.src = "images/rondine/rondineAliGiu.webp";
                 } else {
                     if(birdImgStory.src.includes("AliGiu")) {
-                        birdImgStory.src = "images/rondine/rondineWebp/rondineAliSu.webp";
+                        birdImgStory.src = "images/rondine/rondineAliSu.webp";
                     }
                 }
                 lastScrollTop = scrollTop;
             
         }
         if( Math.abs(bannerBoundingLeft) <= bannerContainerDividedValue) {
-            birdImgStory.src = "images/rondine/rondineWebp/rondineAlzata.webp";
+            birdImgStory.src = "images/rondine/rondineAlzata.webp";
         }
         
 
