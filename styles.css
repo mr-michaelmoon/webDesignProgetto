@@ -4,6 +4,7 @@ html, body {
 }
 
 html {
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
@@ -103,6 +104,30 @@ z-index: 2;
     transform: translate(-50%, -50%);
 }
 
+#sittingBirdEnd {
+    height: 100%;
+    width: 100%;
+    width: auto;
+    position: static;
+    top: 0;
+    z-index: 2;
+    right: 0;
+}
+
+#sittingBirdEndContainer {
+    height: 100%;
+    width: 100%;
+    width: auto;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+}
+
+#uccelloSedutoFine {
+    opacity: 0;
+}
+
 /* -----------------------------menu----------------------------- */
 menu, ul {
     margin: 0;
@@ -140,7 +165,7 @@ menu a img {
 }
 
 #menu {
-    background-image: url("images/elementiMenu/baseMenu/baseMenu.webp");
+    background-image: url("images/elementiMenu/baseMenu/baseMenu.svg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;

@@ -1,5 +1,6 @@
-const numFrames = 32;
+const numFrames = 33;
 let lastScrollTop = 0;
+var controllo = false;
 
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -9,10 +10,12 @@ document.addEventListener('DOMContentLoaded', function () {
     var insiemeFramesBanner = document.getElementById('insiemeFramesBanner');
     var frameBanner = document.getElementsByClassName('frameBanner');
     var sittingBirdContainer = document.getElementById('sittingBirdContainer');
+    var sittingBirdEndContainer = document.getElementById('sittingBirdEndContainer');
+
     var sittingBird = document.getElementById('uccelloSeduto');
     var birdContainer = document.getElementById('birdContainer');
     var birdImgStory = document.getElementById('birdImgStory');
-    var testo1 = document.getElementById('testo1');
+    // var testo1 = document.getElementById('testo1');
     var menu = document.getElementById('menu');
     var viewportHeight = window.innerHeight;
     var viewportWidth = window.innerWidth;
@@ -29,9 +32,12 @@ document.addEventListener('DOMContentLoaded', function () {
     window.onload = function () {
         
         viewportWidth = window.innerWidth;
-        bannerContainer.style.height = (numFrames - 2) * window.screen.width - viewportWidth + "px";
+        bannerContainer.style.height = (numFrames - 2) * window.screen.width - viewportWidth - window.screen.width/3 + "px";
         sittingBirdContainer.style.width = window.screen.width + "px";
+        sittingBirdEndContainer.style.width = window.screen.width + "px";
+
         menuAnimation(sittingBird.getBoundingClientRect().top, menu, viewportHeight);
+        banner.style.width = bannerContainer.offsetHeight + viewportWidth + "px";
         
         window.requestAnimationFrame(() => {
             var bannerBounding = document.getElementById('banner').getBoundingClientRect();
@@ -42,10 +48,13 @@ document.addEventListener('DOMContentLoaded', function () {
     window.onresize = function () {
         viewportWidth = window.innerWidth;
         var vh = Math.abs(viewportHeight - window.innerHeight); // calcolo differenza tra viewportHeight vecchio e quello nuovo
-        bannerContainer.style.height = (numFrames - 2) * window.screen.width - viewportWidth + vh + "px";
+        bannerContainer.style.height = (numFrames - 2) * window.screen.width - viewportWidth + vh - window.screen.width/3 + "px";
         sittingBirdContainer.style.width = window.screen.width + "px";
+        sittingBirdEndContainer.style.width = window.screen.width + "px";
         banner.style.top = "50%";
-            banner.style.transform = "translateY(-50%)";
+        banner.style.transform = "translateY(-50%)";
+        banner.style.width = bannerContainer.offsetHeight + viewportWidth + "px";
+
     }
 
 
@@ -57,19 +66,19 @@ document.addEventListener('DOMContentLoaded', function () {
         
 
         //animazione del testo da correggere
-        if (isInTheViewport(testo1) && !testo1.style.animation.includes("fadeIn")) {
-            testo1.style.animation = "none";
-            setTimeout(function () {
-                testo1.style.animation = "fadeIn 1s forwards";
-            }, 0);
-        }
+        // if (isInTheViewport(testo1) && !testo1.style.animation.includes("fadeIn")) {
+        //     testo1.style.animation = "none";
+        //     setTimeout(function () {
+        //         testo1.style.animation = "fadeIn 1s forwards";
+        //     }, 0);
+        // }
 
-        if (testo1.getBoundingClientRect().bottom >= viewportHeight && !testo1.style.animation.includes("fadeOut")) {
-            testo1.style.animation = "none";
-            setTimeout(function () {
-                testo1.style.animation = "fadeOut 1s forwards";
-            }, 0);
-        }
+        // if (testo1.getBoundingClientRect().bottom >= viewportHeight && !testo1.style.animation.includes("fadeOut")) {
+        //     testo1.style.animation = "none";
+        //     setTimeout(function () {
+        //         testo1.style.animation = "fadeOut 1s forwards";
+        //     }, 0);
+        // }
 
 
         if(bannerContainerBounding.top <= viewportHeight && bannerContainerBounding.bottom >= viewportHeight) {
@@ -137,33 +146,51 @@ function horizontalScroll(bannerContainerBounding, banner, viewportHeight) {
 function birdAnimation(bannerBoundingLeft, sittingBird, birdContainer, birdImgStory, viewportWidth) {
     let halfViewportWidth = viewportWidth / 2;
     var scrollTop = window.scrollY || document.documentElement.scrollTop;
-
-    if(sittingBird.getBoundingClientRect().left + (sittingBird.offsetWidth/2) < halfViewportWidth) {
-    // if(Math.abs(bannerBoundingLeft) >= halfViewportWidth) {
+    var birdImgStoryBounding = birdImgStory.getBoundingClientRect();
+    var sittingBirdBounding = sittingBird.getBoundingClientRect();
+    var bannerContainerBounding = document.getElementById('bannerContainer').getBoundingClientRect();
+    if(sittingBird.getBoundingClientRect().left + (sittingBird.offsetWidth/2) < halfViewportWidth && bannerContainerBounding.bottom >= 0) {
         sittingBird.style.opacity = "0";
         birdContainer.style.display = "block";
-        const value = 50; // quantita di scroll per cambiare uccello
+        const value = 70; // quantita di scroll per cambiare uccello
         let bannerContainerDividedValue = bannerContainer.offsetHeight / value;
- 
 
         //quando si ha scrollato per un tot di quantita e il primo tot non conta
-        if(Math.abs(scrollTop - lastScrollTop) >= bannerContainerDividedValue ) {
+        if( birdImgStoryBounding.right - birdImgStory.offsetWidth/2 <= birdContainer.offsetWidth/2 + birdContainer.offsetWidth/4) {
+            birdImgStory.src = "images/rondine/rondineWebp/rondineAlzata.webp";
+            controllo = true;
+        } else {
+            if(controllo) {
+            birdImgStory.src = "images/rondine/rondineWebp/rondineAliSu.webp";
+            controllo = false;
+            }
+
+            if(Math.abs(scrollTop - lastScrollTop) >= bannerContainerDividedValue ) {
             
                 if(birdImgStory.src.includes("AliSu") || birdImgStory.src.includes("Alzata")) {
                     birdImgStory.src = "images/rondine/rondineWebp/rondineAliGiu.webp";
                 } else {
-                    if(birdImgStory.src.includes("AliGiu")) {
                         birdImgStory.src = "images/rondine/rondineWebp/rondineAliSu.webp";
-                    }
                 }
                 lastScrollTop = scrollTop;
             
-        }
-        if( Math.abs(bannerBoundingLeft) <= bannerContainerDividedValue) {
-            birdImgStory.src = "images/rondine/rondineWebp/rondineAlzata.webp";
+            }
+
+            let frames = document.getElementById('insiemeFramesBanner').querySelectorAll('img');
+            let lastFrame = frames[frames.length - 1];
+            let sittingBirdEndContainerBounding = document.getElementById('sittingBirdEndContainer').getBoundingClientRect();
+            var sittingBirdEnd = document.getElementById('uccelloSedutoFine');
+            var sittingBirdEndBounding = sittingBirdEnd.getBoundingClientRect();
+            if( birdImgStoryBounding.left >= sittingBirdEndBounding.left /*birdImgStoryBounding.right - birdImgStory.offsetWidth/2 >= lastFrame.getBoundingClientRect().left*/ ) {
+                // birdImgStory.src = "images/rondine/rondineWebp/rondineSeduta.webp";
+                birdImgStory.style.display = "none";
+                sittingBirdEnd.style.opacity = "1";
+            } else {
+                sittingBirdEnd.style.opacity = "0";
+                birdImgStory.style.display = "block";
+            }
         }
         
-
     } else {
         sittingBird.style.opacity = "1";
         birdContainer.style.display = "none";
