@@ -168,7 +168,7 @@ function birdAnimation(bannerBoundingLeft, sittingBird, birdContainer, birdImgSt
             if(Math.abs(scrollTop - lastScrollTop) >= bannerContainerDividedValue ) {
             
                 if(birdImgStory.src.includes("AliSu") || birdImgStory.src.includes("Alzata")) {
-                    birdImgStory.src = "images/rondine/rondineWebp/rondineAliGiu.webp";
+                    birdImgStory.src = "images/rondine/rondineAliGiu.webp";
                 } else {
                         birdImgStory.src = "images/rondine/rondineWebp/rondineAliSu.webp";
                 }
