@@ -181,14 +181,14 @@ function birdAnimation(bannerBoundingLeft, sittingBird, birdContainer, birdImgSt
             let sittingBirdEndContainerBounding = document.getElementById('sittingBirdEndContainer').getBoundingClientRect();
             var sittingBirdEnd = document.getElementById('uccelloSedutoFine');
             var sittingBirdEndBounding = sittingBirdEnd.getBoundingClientRect();
-            if( birdImgStoryBounding.left >= sittingBirdEndBounding.left /*birdImgStoryBounding.right - birdImgStory.offsetWidth/2 >= lastFrame.getBoundingClientRect().left*/ ) {
-                // birdImgStory.src = "images/rondine/rondineWebp/rondineSeduta.webp";
-                birdImgStory.style.display = "none";
-                sittingBirdEnd.style.opacity = "1";
-            } else {
-                sittingBirdEnd.style.opacity = "0";
-                birdImgStory.style.display = "block";
-            }
+            // if( birdImgStoryBounding.left <= sittingBirdEndBounding.left /*birdImgStoryBounding.right - birdImgStory.offsetWidth/2 >= lastFrame.getBoundingClientRect().left*/ ) {
+            //     // birdImgStory.src = "images/rondine/rondineWebp/rondineSeduta.webp";
+            //     birdImgStory.style.display = "none";
+            //     sittingBirdEnd.style.opacity = "1";
+            // } else {
+            //     sittingBirdEnd.style.opacity = "0";
+            //     birdImgStory.style.display = "block";
+            // }
         }
         
     } else {
