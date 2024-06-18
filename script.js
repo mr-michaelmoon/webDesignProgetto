@@ -185,8 +185,8 @@ function birdAnimation(bannerBoundingLeft, sittingBird, birdContainer, birdImgSt
             var sittingBirdEnd = document.getElementById('uccelloSedutoFine');
             var sittingBirdEndBounding = sittingBirdEnd.getBoundingClientRect();
             var bannerContainerBounding = document.getElementById('bannerContainer').getBoundingClientRect();
-
-            if( birdImgStoryBounding.left >= sittingBirdEndBounding.left) {
+            //rondine seduta se si trova sopra a rondine seduta fine nascosta o la storia finisce
+            if( birdImgStoryBounding.left >= sittingBirdEndBounding.left || parseInt(bannerContainerBounding.bottom) <= window.innerHeight) {
 
                 birdImgStory.style.opacity = "0";
                 sittingBirdEnd.style.opacity = "1";
