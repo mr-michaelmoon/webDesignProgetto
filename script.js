@@ -30,12 +30,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
     //si attiva quando si ricarica la pagina
     window.onload = function () {
-        
+
         viewportWidth = window.innerWidth;
-        bannerContainer.style.height = (numFrames - 2) * window.screen.width - viewportWidth - window.screen.width/3 + "px";
+        bannerContainer.style.height = calcTotalWidthFrames() - viewportWidth + "px";
         sittingBirdContainer.style.width = window.screen.width + "px";
         sittingBirdEndContainer.style.width = window.screen.width + "px";
-
+        birdImgStory.style.width = sittingBird.offsetWidth + "px";
         menuAnimation(sittingBird.getBoundingClientRect().top, menu, viewportHeight);
         banner.style.width = bannerContainer.offsetHeight + viewportWidth + "px";
         
@@ -44,11 +44,12 @@ document.addEventListener('DOMContentLoaded', function () {
             birdAnimation(bannerBounding.left, sittingBird, birdContainer, birdImgStory, viewportWidth)
         });
     }
+
     //si attiva quando si modifica la dimensione della finestra
     window.onresize = function () {
         viewportWidth = window.innerWidth;
         var vh = Math.abs(viewportHeight - window.innerHeight); // calcolo differenza tra viewportHeight vecchio e quello nuovo
-        bannerContainer.style.height = (numFrames - 2) * window.screen.width - viewportWidth + vh - window.screen.width/3 + "px";
+        bannerContainer.style.height = calcTotalWidthFrames() - viewportWidth + vh + "px";
         sittingBirdContainer.style.width = window.screen.width + "px";
         sittingBirdEndContainer.style.width = window.screen.width + "px";
         banner.style.top = "50%";
@@ -157,11 +158,11 @@ function birdAnimation(bannerBoundingLeft, sittingBird, birdContainer, birdImgSt
 
         //quando si ha scrollato per un tot di quantita e il primo tot non conta
         if( birdImgStoryBounding.right - birdImgStory.offsetWidth/2 <= birdContainer.offsetWidth/2 + birdContainer.offsetWidth/4) {
-            birdImgStory.src = "images/rondine/rondineWebp/rondineAlzata.webp";
+            birdImgStory.src = "images/rondine/rondineAlzata.webp";
             controllo = true;
         } else {
             if(controllo) {
-            birdImgStory.src = "images/rondine/rondineWebp/rondineAliSu.webp";
+            birdImgStory.src = "images/rondine/rondineAliSu.webp";
             controllo = false;
             }
 
@@ -170,7 +171,7 @@ function birdAnimation(bannerBoundingLeft, sittingBird, birdContainer, birdImgSt
                 if(birdImgStory.src.includes("AliSu") || birdImgStory.src.includes("Alzata")) {
                     birdImgStory.src = "images/rondine/rondineAliGiu.webp";
                 } else {
-                        birdImgStory.src = "images/rondine/rondineWebp/rondineAliSu.webp";
+                        birdImgStory.src = "images/rondine/rondineAliSu.webp";
                 }
                 lastScrollTop = scrollTop;
             
@@ -182,7 +183,7 @@ function birdAnimation(bannerBoundingLeft, sittingBird, birdContainer, birdImgSt
             var sittingBirdEnd = document.getElementById('uccelloSedutoFine');
             var sittingBirdEndBounding = sittingBirdEnd.getBoundingClientRect();
             // if( birdImgStoryBounding.left <= sittingBirdEndBounding.left /*birdImgStoryBounding.right - birdImgStory.offsetWidth/2 >= lastFrame.getBoundingClientRect().left*/ ) {
-            //     // birdImgStory.src = "images/rondine/rondineWebp/rondineSeduta.webp";
+            //     // birdImgStory.src = "images/rondine/rondineSeduta.webp";
             //     birdImgStory.style.display = "none";
             //     sittingBirdEnd.style.opacity = "1";
             // } else {
@@ -195,4 +196,13 @@ function birdAnimation(bannerBoundingLeft, sittingBird, birdContainer, birdImgSt
         sittingBird.style.opacity = "1";
         birdContainer.style.display = "none";
     }
+}
+
+function calcTotalWidthFrames() {
+    var totalFramesWidth = 0;
+        var frames = document.getElementById('insiemeFramesBanner').querySelectorAll('img');
+        frames.forEach(function (frame) {
+            totalFramesWidth += frame.width;
+        });
+        return totalFramesWidth;
 }

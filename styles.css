@@ -81,7 +81,6 @@ p {
 
 #sittingBirdContainer {
 height: 100%;
-width: 100%;
 width: auto;
 position: absolute;
 top: 0;
@@ -101,12 +100,12 @@ z-index: 2;
     display: none;
     top: 50vh;
     left: 50vw;
+    
     transform: translate(-50%, -50%);
 }
 
 #sittingBirdEnd {
     height: 100%;
-    width: 100%;
     width: auto;
     position: static;
     top: 0;
@@ -114,9 +113,12 @@ z-index: 2;
     right: 0;
 }
 
+#birdImgStory {
+    
+}
+
 #sittingBirdEndContainer {
     height: 100%;
-    width: 100%;
     width: auto;
     position: absolute;
     top: 0;
