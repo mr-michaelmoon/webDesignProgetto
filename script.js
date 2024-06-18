@@ -150,14 +150,16 @@ function birdAnimation(bannerBoundingLeft, sittingBird, birdContainer, birdImgSt
     var birdImgStoryBounding = birdImgStory.getBoundingClientRect();
     var sittingBirdBounding = sittingBird.getBoundingClientRect();
     var bannerContainerBounding = document.getElementById('bannerContainer').getBoundingClientRect();
+    
+    //se ci si trova tra la meta dell'uccello seduto all'inizio e la fine della storia
     if(sittingBird.getBoundingClientRect().left + (sittingBird.offsetWidth/2) < halfViewportWidth && bannerContainerBounding.bottom >= 0) {
         sittingBird.style.opacity = "0";
         birdContainer.style.display = "block";
         const value = 70; // quantita di scroll per cambiare uccello
         let bannerContainerDividedValue = bannerContainer.offsetHeight / value;
 
-        //quando si ha scrollato per un tot di quantita e il primo tot non conta
-        if( birdImgStoryBounding.right - birdImgStory.offsetWidth/2 <= birdContainer.offsetWidth/2 + birdContainer.offsetWidth/4) {
+        //se rondine prende il volo, allora alzata, altrimenti è in volo
+        if( birdImgStoryBounding.right - birdImgStory.offsetWidth/2 <= sittingBird.getBoundingClientRect().right - sittingBird.offsetWidth/4) {
             birdImgStory.src = "images/rondine/rondineAlzata.webp";
             controllo = true;
         } else {
@@ -183,7 +185,7 @@ function birdAnimation(bannerBoundingLeft, sittingBird, birdContainer, birdImgSt
             var sittingBirdEnd = document.getElementById('uccelloSedutoFine');
             var sittingBirdEndBounding = sittingBirdEnd.getBoundingClientRect();
             var bannerContainerBounding = document.getElementById('bannerContainer').getBoundingClientRect();
-            console.log(window.innerHeight, bannerContainerBounding.bottom);
+
             if( birdImgStoryBounding.left >= sittingBirdEndBounding.left) {
 
                 birdImgStory.style.opacity = "0";
