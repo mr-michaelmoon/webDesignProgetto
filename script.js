@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', function () {
     var banner = document.getElementById('banner');
     var bannerContainer = document.getElementById('bannerContainer');
     var insiemeFramesBanner = document.getElementById('insiemeFramesBanner');
-    var frameBanner = document.getElementsByClassName('frameBanner');
     var sittingBirdContainer = document.getElementById('sittingBirdContainer');
     var sittingBirdEndContainer = document.getElementById('sittingBirdEndContainer');
 
@@ -24,8 +23,8 @@ document.addEventListener('DOMContentLoaded', function () {
     homepage.style.width = window.screen.width + "px";
 
     // creazione frame delle immagini del banner 
-    createFramesBanner(insiemeFramesBanner)
-
+    createFramesBanner(insiemeFramesBanner);
+    insertTextsFrame();
     menu.style.opacity = "0";
 
     //si attiva quando si ricarica la pagina
@@ -60,37 +59,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     document.addEventListener('scroll', function (e) {
-        var homepageBounding = homepage.getBoundingClientRect();
         var bannerBounding = banner.getBoundingClientRect();
         var bannerContainerBounding = bannerContainer.getBoundingClientRect();
         var sittingBirdBounding = sittingBird.getBoundingClientRect();
-        
 
-        //animazione del testo da correggere
-        // if (isInTheViewport(testo1) && !testo1.style.animation.includes("fadeIn")) {
-        //     testo1.style.animation = "none";
-        //     setTimeout(function () {
-        //         testo1.style.animation = "fadeIn 1s forwards";
-        //     }, 0);
-        // }
-
-        // if (testo1.getBoundingClientRect().bottom >= viewportHeight && !testo1.style.animation.includes("fadeOut")) {
-        //     testo1.style.animation = "none";
-        //     setTimeout(function () {
-        //         testo1.style.animation = "fadeOut 1s forwards";
-        //     }, 0);
-        // }
-
-
+        //se si è nella storia (in bannerContainer)
         if(bannerContainerBounding.top <= viewportHeight && bannerContainerBounding.bottom >= viewportHeight) {
+            
+
             if (sittingBirdBounding.top <= viewportHeight / 2) {
-                if(banner.style.position != "fixed")
-                    banner.style.left = "0";
-                
+
                 banner.style.position = "fixed";
                 banner.style.top = "50%";
                 banner.style.transform = "translateY(-50%)";
-
                 
                 if (bannerContainerBounding.top >= 0) {
                     banner.style.position = "relative";
@@ -113,11 +94,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-
 // funzioni -------------------------------------------------------
-function isInTheViewport(element) {
-    return element.getBoundingClientRect().top >= 0 && element.getBoundingClientRect().bottom <= window.innerHeight;
-}
 
 function menuAnimation(birdBoundingT, menu, viewportHeight) {
 
@@ -134,6 +111,14 @@ function createFramesBanner(insiemeFramesBanner) {
         insiemeFramesBanner.innerHTML += "<div class='frameBanner'><img draggable='false' src='images/framesBanner/frame-" + i + ".png' /></div>";
     }
 }
+// inserisce i testi nei frame
+function insertTextsFrame() {
+
+    var frames = document.getElementById('insiemeFramesBanner').querySelectorAll('div');
+    var texts = allTexts();
+    addTexts(frames, texts);
+    
+}
 
 function horizontalScroll(bannerContainerBounding, banner, viewportHeight) {
     if (bannerContainerBounding.bottom >= viewportHeight && banner.style.position == "fixed") {
@@ -148,7 +133,6 @@ function birdAnimation(bannerBoundingLeft, sittingBird, birdContainer, birdImgSt
     let halfViewportWidth = viewportWidth / 2;
     var scrollTop = window.scrollY || document.documentElement.scrollTop;
     var birdImgStoryBounding = birdImgStory.getBoundingClientRect();
-    var sittingBirdBounding = sittingBird.getBoundingClientRect();
     var bannerContainerBounding = document.getElementById('bannerContainer').getBoundingClientRect();
     
     //se ci si trova tra la meta dell'uccello seduto all'inizio e la fine della storia
@@ -167,7 +151,8 @@ function birdAnimation(bannerBoundingLeft, sittingBird, birdContainer, birdImgSt
             birdImgStory.src = "images/rondine/rondineAliSu.webp";
             controllo = false;
             }
-
+            
+            //se si scrolla per una certa quantità si fa il cambio di immagine
             if(Math.abs(scrollTop - lastScrollTop) >= bannerContainerDividedValue ) {
             
                 if(birdImgStory.src.includes("AliSu") || birdImgStory.src.includes("Alzata")) {
@@ -179,12 +164,10 @@ function birdAnimation(bannerBoundingLeft, sittingBird, birdContainer, birdImgSt
             
             }
 
-            let frames = document.getElementById('insiemeFramesBanner').querySelectorAll('img');
-            let lastFrame = frames[frames.length - 1];
-            let sittingBirdEndContainerBounding = document.getElementById('sittingBirdEndContainer').getBoundingClientRect();
             var sittingBirdEnd = document.getElementById('uccelloSedutoFine');
             var sittingBirdEndBounding = sittingBirdEnd.getBoundingClientRect();
             var bannerContainerBounding = document.getElementById('bannerContainer').getBoundingClientRect();
+            
             //rondine seduta se si trova sopra a rondine seduta fine nascosta o la storia finisce
             if( birdImgStoryBounding.left >= sittingBirdEndBounding.left || parseInt(bannerContainerBounding.bottom) <= window.innerHeight) {
 
@@ -202,6 +185,7 @@ function birdAnimation(bannerBoundingLeft, sittingBird, birdContainer, birdImgSt
     }
 }
 
+//calcola la larghezza totale di tutti i frame della storia
 function calcTotalWidthFrames() {
     var totalFramesWidth = 0;
         var frames = document.getElementById('insiemeFramesBanner').querySelectorAll('img');
@@ -209,4 +193,57 @@ function calcTotalWidthFrames() {
             totalFramesWidth += frame.width;
         });
         return totalFramesWidth;
+}
+
+//restituisce array con i testi della storia
+function allTexts() {
+    return ["Una rondine viveva felice in un piccolo nido in Kenya.<br> Ogni giorno, volava libera sotto il cielo azzurro, sorvolando le verdi savane e i fiumi scintillanti.</br>Ma con l\'arrivo dell\'autunno, la rondine sentì un forte desiderio di partire per un lungo viaggio, un viaggio che l\'avrebbe portata fino all\'Italia.",
+            "Un mattino presto, la rondine spiegò le ali e iniziò il suo volo verso nord.",
+            "Il primo tratto del viaggio fu piacevole e pieno di avventure, ma presto arrivò davanti a una sfida imponente…",
+            "…Il deserto del Sahara.",
+            "La vastità del deserto era infinita e il sole bruciava alto nel cielo.",
+            "\"Oh, cara rondine spero che tu abbia abbastanza forza per attraversare questo deserto spietato.\"",
+            "La rondine volò senza sosta, sentendo il calore ardente sotto le sue ali. La sabbia sembrava non finire mai, ma la piccola rondine non si arrese.",
+            "Beveva dalle rare oasi che incontrava e riposava sugli arbusti sparsi qua e là.",
+            "Dopo giorni e giorni di volo, finalmente vide all'orizzonte qualcosa di diverso!",
+            "Il blu scintillante del Mar Mediterraneo.",
+            "\“Ben fatto! Hai superato il Sahara! Ora ti aspetta un'altra sfida: lo Stretto di Gibilterra.\”",
+            "Lo Stretto di Gibilterra era un passaggio stretto e ventoso che separava l'Africa dall'Europa. Le correnti erano forti e la rondine dovette lottare contro i venti impetuosi. Attraversare lo Stretto era una delle parti più difficili del suo viaggio, ma la vista della terra dall’altra parte le dava la forza necessaria.",
+            "Con grande determinazione, raggiunse finalmente le coste spagnole.",
+            "Dalla Spagna, la rondine volò verso i maestosi Monti Pirenei. Qui, i boschi erano fitti e verdi, pieni di alberi alti e profumati. Era un luogo meraviglioso, ma il volo tra le montagne non era semplice. Le correnti d'aria potevano essere imprevedibili, e a volte il cielo si copriva di nubi minacciose.",
+            "\“Stai attenta, piccola rondine, queste vette che separano la Spagna dalla Francia possono essere pericolose.\”",
+            "Ma lei era una rondine coraggiosa.<br>Sapeva quando riposare sui rami e quando riprendere il volo.",
+            "Attraversò i Pirenei con grazia e forza, giungendo finalmente dall’altra parte.",
+            "Incontrò altri uccelli migratori lungo il viaggio e insieme volarono facendosi compagnia gli uni all’altra.",
+            "Finalmente, dopo molte settimane di viaggio, arrivò in Italia.",
+            "La rondine trovò un bel paesino vicino a un lago, dove decise di costruire il suo nuovo nido. Qui, i cieli erano azzurri e l'aria fresca. Ogni giorno, si nutriva di insetti e cinguettava felice.",
+            "\“La rondine ha affrontato tanti pericoli e ha attraversato luoghi magnifici.<br>Ora è giunta sana e salva in Italia, pronta per una nuova avventura. E chissà, forse un giorno volerà di nuovo verso il Kenya, portando con sé i ricordi di questo meraviglioso viaggio.\”",
+            "E così termina il viaggio della rondine coraggiosa. Il suo spirito avventuroso continuerà a ispirare tutti coloro che amano esplorare il mondo."
+        ];
+}
+
+//aggiunge i testi ai vari frame
+function addTexts(frames, texts) {
+    frames[0].insertAdjacentHTML("beforeend", "<div id='testo1' class='testiStoria'><p>"+ texts[0] +"</p></div>");
+    frames[1].insertAdjacentHTML("beforeend", "<div id='testo2' class='testiStoria'><p>"+ texts[1] +"</p></div>");
+    frames[1].insertAdjacentHTML("beforeend", "<div id='testo3' class='testiStoria'><p>"+ texts[2] +"</p></div>");
+    frames[2].insertAdjacentHTML("beforeend", "<div id='testo4' class='testiStoria'><p>"+ texts[3] +"</p></div>");
+    frames[4].insertAdjacentHTML("beforeend", "<div id='testo5' class='testiStoria'><p>"+ texts[4] +"</p></div>");
+    frames[5].insertAdjacentHTML("beforeend", "<div id='testo6' class='testiStoria'><p>"+ texts[5] +"</p></div>");
+    frames[7].insertAdjacentHTML("beforeend", "<div id='testo7' class='testiStoria'><p>"+ texts[6] +"</p></div>");
+    frames[7].insertAdjacentHTML("beforeend", "<div id='testo8' class='testiStoria'><p>"+ texts[7] +"</p></div>");
+    frames[9].insertAdjacentHTML("beforeend", "<div id='testo9' class='testiStoria'><p>"+ texts[8] +"</p></div>");
+    frames[11].insertAdjacentHTML("beforeend", "<div id='testo10' class='testiStoria'><p>"+ texts[9] +"</p></div>");
+    frames[13].insertAdjacentHTML("beforeend", "<div id='testo11' class='testiStoria'><p>"+ texts[10] +"</p></div>");
+    frames[14].insertAdjacentHTML("beforeend", "<div id='testo12' class='testiStoria'><p>"+ texts[11] +"</p></div>");
+    frames[15].insertAdjacentHTML("beforeend", "<div id='testo13' class='testiStoria'><p>"+ texts[12] +"</p></div>");
+    frames[16].insertAdjacentHTML("beforeend", "<div id='testo14' class='testiStoria'><p>"+ texts[13] +"</p></div>");
+    frames[17].insertAdjacentHTML("beforeend", "<div id='testo15' class='testiStoria'><p>"+ texts[14] +"</p></div>");
+    frames[20].insertAdjacentHTML("beforeend", "<div id='testo16' class='testiStoria'><p>"+ texts[15] +"</p></div>");
+    frames[22].insertAdjacentHTML("beforeend", "<div id='testo17' class='testiStoria'><p>"+ texts[16] +"</p></div>");
+    frames[23].insertAdjacentHTML("beforeend", "<div id='testo18' class='testiStoria'><p>"+ texts[17] +"</p></div>");
+    frames[25].insertAdjacentHTML("beforeend", "<div id='testo19' class='testiStoria'><p>"+ texts[18] +"</p></div>");
+    frames[27].insertAdjacentHTML("beforeend", "<div id='testo20' class='testiStoria'><p>"+ texts[19] +"</p></div>");
+    frames[28].insertAdjacentHTML("beforeend", "<div id='testo21' class='testiStoria'><p>"+ texts[20] +"</p></div>");
+    frames[30].insertAdjacentHTML("beforeend", "<div id='testo22' class='testiStoria'><p>"+ texts[21] +"</p></div>");
 }

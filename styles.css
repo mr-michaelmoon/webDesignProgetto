@@ -4,7 +4,10 @@ html, body {
 }
 
 html {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Arial;
+    color: #11053b;
+    font-size: 1.2em;
+    /* line-height: 8px; */
 }
 
 body {
@@ -17,17 +20,13 @@ img {
 
 p {
     margin: 0;
-    text-align: justify;
-    font-size: 1em;
+    text-align: left;
+    
 }
 
 #homepage {
     min-height: 100vh;
     width: 100vw;
-    /* background-image: url("images/homepageProva16_9.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: left bottom; */
     margin-bottom: -1px;
     position: relative;
 }
@@ -61,6 +60,7 @@ p {
     height: 100%;
     width: auto;
     flex: none;
+    position: relative;
     
 }
 
@@ -68,16 +68,154 @@ p {
     width: auto;
     height: 100%;
     object-fit: cover;
+    position: relative;
+}
+/* ----------------------------- testi della storia ----------------------------------- */
+.testiStoria {
+    position: absolute;
+    bottom: 50%;
+    right: 50%;
+    font-weight: bold;
+    user-select: text;
+    z-index: 3;
 }
 
 #testo1 {
-    width: 15vw;
-    height: 10vh;
-    opacity: 0;
-    position: absolute;
-    bottom: 15%;
-    right: 10%;
+    width: 20%;
+    bottom: 10%;
+    right: 5%;
 }
+
+#testo2 {
+    width: 15%;
+    top: 10%;
+    left: 5%;
+}
+
+#testo3 {
+    width: 10%;
+    bottom: 10%;
+    right: 5%;
+    
+}
+
+#testo4 {
+    width: 15%;
+    top: 10%;
+    right: 5%;
+}
+
+#testo5 {
+    width: 25%;
+    top: 10%;
+    right: 25%;
+}
+
+#testo6 {
+    width: 25%;
+    bottom: 10%;
+    right: 5%;
+}
+
+#testo7 {
+    width: 20%;
+    top: 10%;
+    left: 5%;
+}
+
+#testo8 {
+    width: 15%;
+    bottom: 10%;
+    right: 5%;
+}
+
+#testo9 {
+    width: 30%;
+    top: 10%;
+    right: 5%;
+}
+
+#testo10 {
+    width: 20%;
+    bottom: 10%;
+    left: 5%;
+}
+
+#testo11 {
+    width: 35%;
+    top: 10%;
+    left: 15%;
+}
+
+#testo12 {
+    width: 25%;
+    bottom: 10%;
+    left: 25%;
+}
+
+#testo13 {
+    width: 20%;
+    top: 10%;
+    left: 5%;
+}
+
+#testo14 {
+    width: 25%;
+    top: 10%;
+    right: 5%;
+}
+
+#testo15 {
+    width: 20%;
+    bottom: 10%;
+    left: 40%;
+}
+
+#testo16 {
+    width: 19%;
+    top: 10%;
+    left: 27%;
+    color: white;
+}
+
+#testo17 {
+    width: 20%;
+    top: 10%;
+    right: 5%;
+}
+
+#testo18 {
+    width: 20%;
+    bottom: 10%;
+    right: 5%;
+}
+
+#testo19 {
+    width: 25%;
+    top: 10%;
+    left: 30%;
+}
+
+#testo20 {
+    width: 25%;
+    bottom: 10%;
+    left: 5%;
+}
+
+#testo21 {
+    width: 28%;
+    top: 10%;
+    right: 5%;
+}
+
+#testo22 {
+    width: 25%;
+    top: 10%;
+    left: 10%;
+    color: white;
+}
+
+/* ---------------------------------------------------------------------------- */
 
 #sittingBirdContainer {
 height: 100%;
