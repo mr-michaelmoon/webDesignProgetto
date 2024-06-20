@@ -6,7 +6,7 @@ html, body {
 html {
     font-family: Arial;
     color: #11053b;
-    font-size: 1.2em;
+    font-size: 1.5em;
     /* line-height: 8px; */
 }
 
@@ -71,10 +71,28 @@ p {
     position: relative;
 }
 /* ----------------------------- testi della storia ----------------------------------- */
+
+@font-face {
+    font-family: Rouli;
+    src: url(font/Rouli.woff2) format(woff2);
+}
+@font-face {
+    font-family: IndieFlower;
+    src: url(font/IndieFlower.woff2) format(woff2);
+}
+
+.charSpecial {
+    font-family: IndieFlower;
+    font-size: 0.7em;
+    line-height: 2%;
+}
+
 .testiStoria {
+    font-family: Rouli;
     position: absolute;
     bottom: 50%;
     right: 50%;
+    padding: 1.3%;
     font-weight: bold;
     user-select: text;
     z-index: 3;
