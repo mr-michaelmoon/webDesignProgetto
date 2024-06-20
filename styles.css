@@ -81,136 +81,143 @@ p {
 }
 
 #testo1 {
-    width: 20%;
-    bottom: 10%;
-    right: 5%;
+    width: 35%;
+    bottom: 12%;
+    right: 0%;
 }
 
 #testo2 {
     width: 15%;
-    top: 10%;
+    top: 12%;
     left: 5%;
 }
 
 #testo3 {
-    width: 10%;
-    bottom: 10%;
+    width: 20%;
+    bottom: 12%;
     right: 5%;
     
 }
 
 #testo4 {
     width: 15%;
-    top: 10%;
+    top: 12%;
     right: 5%;
 }
 
 #testo5 {
     width: 25%;
-    top: 10%;
+    top: 12%;
     right: 25%;
 }
 
 #testo6 {
     width: 25%;
-    bottom: 10%;
+    bottom: 12%;
     right: 5%;
+    font-style: italic;
 }
 
 #testo7 {
-    width: 20%;
-    top: 10%;
+    width: 25%;
+    top: 12%;
     left: 5%;
 }
 
 #testo8 {
-    width: 15%;
-    bottom: 10%;
+    width: 25%;
+    bottom: 12%;
     right: 5%;
 }
 
 #testo9 {
     width: 30%;
-    top: 10%;
+    top: 12%;
     right: 5%;
 }
 
 #testo10 {
-    width: 20%;
+    width: 30%;
     bottom: 10%;
     left: 5%;
 }
 
 #testo11 {
-    width: 35%;
-    top: 10%;
+    width: 45%;
+    top: 12%;
     left: 15%;
+    font-style: italic;
+
 }
 
 #testo12 {
-    width: 25%;
-    bottom: 10%;
+    width: 43%;
+    bottom: 12%;
     left: 25%;
 }
 
 #testo13 {
-    width: 20%;
-    top: 10%;
+    width: 25%;
+    top: 12%;
     left: 5%;
 }
 
 #testo14 {
-    width: 25%;
-    top: 10%;
+    width: 50%;
+    top: 12%;
     right: 5%;
 }
 
 #testo15 {
     width: 20%;
-    bottom: 10%;
+    bottom: 12%;
     left: 40%;
+    font-style: italic;
+
 }
 
 #testo16 {
-    width: 19%;
-    top: 10%;
+    width: 25%;
+    top: 12%;
     left: 27%;
     color: white;
 }
 
 #testo17 {
-    width: 20%;
-    top: 10%;
+    width: 25%;
+    top: 12%;
     right: 5%;
 }
 
 #testo18 {
-    width: 20%;
-    bottom: 10%;
+    width: 33%;
+    bottom: 12%;
     right: 5%;
 }
 
 #testo19 {
     width: 25%;
-    top: 10%;
+    top: 12%;
     left: 30%;
 }
 
 #testo20 {
     width: 25%;
-    bottom: 10%;
+    bottom: 12%;
     left: 5%;
 }
 
 #testo21 {
     width: 28%;
-    top: 10%;
+    top: 12%;
     right: 5%;
+    font-style: italic;
+
 }
 
 #testo22 {
     width: 25%;
-    top: 10%;
+    top: 12%;
     left: 10%;
     color: white;
 }
