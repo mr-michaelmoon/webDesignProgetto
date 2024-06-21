@@ -3,22 +3,6 @@ let lastScrollTop = 0;
 var controllo = false;
 
 
-// precaricamento immagini
-
-
-const imagesToPreload = [
-    "images/homepage.png",
-    "images/rondine/rondineSeduta.webp",
-];
-for(let i = 2; i < numFrames; i++) {
-    imagesToPreload.push(`images/framesBanner/frame-${i}.png`);
-}
-
-// Precarica le immagini
-imagesToPreload.forEach(src => {
-    const img = new Image();
-    img.src = src;
-});
 
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -33,7 +17,6 @@ document.addEventListener('DOMContentLoaded', function () {
     var sittingBird = document.getElementById('uccelloSeduto');
     var birdContainer = document.getElementById('birdContainer');
     var birdImgStory = document.getElementById('birdImgStory');
-    // var testo1 = document.getElementById('testo1');
     var menu = document.getElementById('menu');
     var viewportHeight = window.innerHeight;
     var viewportWidth = window.innerWidth;
