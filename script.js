@@ -231,26 +231,8 @@ function allTexts() {
 
 //aggiunge i testi ai vari frame
 function addTexts(frames, texts) {
-    frames[0].insertAdjacentHTML("beforeend", "<p id='testo1' class='testiStoria'>"+ texts[0] +"</p>");
-    frames[1].insertAdjacentHTML("beforeend", "<p id='testo2' class='testiStoria'>"+ texts[1] +"</p>");
-    frames[1].insertAdjacentHTML("beforeend", "<p id='testo3' class='testiStoria'>"+ texts[2] +"</p>");
-    frames[2].insertAdjacentHTML("beforeend", "<p id='testo4' class='testiStoria'>"+ texts[3] +"</p>");
-    frames[4].insertAdjacentHTML("beforeend", "<p id='testo5' class='testiStoria'>"+ texts[4] +"</p>");
-    frames[5].insertAdjacentHTML("beforeend", "<p id='testo6' class='testiStoria'>"+ texts[5] +"</p>");
-    frames[7].insertAdjacentHTML("beforeend", "<p id='testo7' class='testiStoria'>"+ texts[6] +"</p>");
-    frames[7].insertAdjacentHTML("beforeend", "<p id='testo8' class='testiStoria'>"+ texts[7] +"</p>");
-    frames[9].insertAdjacentHTML("beforeend", "<p id='testo9' class='testiStoria'>"+ texts[8] +"</p>");
-    frames[11].insertAdjacentHTML("beforeend", "<p id='testo10' class='testiStoria'>"+ texts[9] +"</p>");
-    frames[13].insertAdjacentHTML("beforeend", "<p id='testo11' class='testiStoria'>"+ texts[10] +"</p>");
-    frames[14].insertAdjacentHTML("beforeend", "<p id='testo12' class='testiStoria'>"+ texts[11] +"</p>");
-    frames[15].insertAdjacentHTML("beforeend", "<p id='testo13' class='testiStoria'>"+ texts[12] +"</p>");
-    frames[16].insertAdjacentHTML("beforeend", "<p id='testo14' class='testiStoria'>"+ texts[13] +"</p>");
-    frames[17].insertAdjacentHTML("beforeend", "<p id='testo15' class='testiStoria'>"+ texts[14] +"</p>");
-    frames[20].insertAdjacentHTML("beforeend", "<p id='testo16' class='testiStoria'>"+ texts[15] +"</p>");
-    frames[22].insertAdjacentHTML("beforeend", "<p id='testo17' class='testiStoria'>"+ texts[16] +"</p>");
-    frames[23].insertAdjacentHTML("beforeend", "<p id='testo18' class='testiStoria'>"+ texts[17] +"</p>");
-    frames[25].insertAdjacentHTML("beforeend", "<p id='testo19' class='testiStoria'>"+ texts[18] +"</p>");
-    frames[27].insertAdjacentHTML("beforeend", "<p id='testo20' class='testiStoria'>"+ texts[19] +"</p>");
-    frames[28].insertAdjacentHTML("beforeend", "<p id='testo21' class='testiStoria'>"+ texts[20] +"</p>");
-    frames[30].insertAdjacentHTML("beforeend", "<p id='testo22' class='testiStoria'>"+ texts[21] +"</p>");
+    let positionTexts = [0, 1, 1, 2, 3, 4, 7, 7, 9, 11, 13, 14, 15, 16, 17, 20, 22, 23, 25, 27, 28, 30];
+    for(let i = 0; i < positionTexts.length; i++) {
+        frames[positionTexts[i]].insertAdjacentHTML("beforeend", "<p id='testo" + (i+1) + "' class='testiStoria'>" + texts[i] + "</p>");
+    }
 }
