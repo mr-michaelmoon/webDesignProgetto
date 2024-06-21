@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
         birdImgStory.style.width = sittingBird.offsetWidth + "px";
         menuAnimation(sittingBird.getBoundingClientRect().top, menu, viewportHeight);
         banner.style.width = bannerContainer.offsetHeight + viewportWidth + "px";
-        
+
         window.requestAnimationFrame(() => {
             var bannerBounding = document.getElementById('banner').getBoundingClientRect();
             birdAnimation(bannerBounding.left, sittingBird, birdContainer, birdImgStory, viewportWidth)
@@ -54,7 +54,6 @@ document.addEventListener('DOMContentLoaded', function () {
         banner.style.width = bannerContainer.offsetHeight + viewportWidth + "px";
 
     }
-
 
     document.addEventListener('scroll', function (e) {
         var bannerBounding = banner.getBoundingClientRect();
@@ -126,6 +125,10 @@ function horizontalScroll(bannerContainerBounding, banner, viewportHeight) {
         }
     }
 }
+//animazione testo
+function animationText(text, fadeType) {
+    text.style.animation = fadeType + " 1s forwards";
+}
 
 function birdAnimation(bannerBoundingLeft, sittingBird, birdContainer, birdImgStory, viewportWidth) {
     let halfViewportWidth = viewportWidth / 2;
@@ -144,6 +147,9 @@ function birdAnimation(bannerBoundingLeft, sittingBird, birdContainer, birdImgSt
         if( birdImgStoryBounding.right - birdImgStory.offsetWidth/2 <= sittingBird.getBoundingClientRect().right - sittingBird.offsetWidth/4) {
             birdImgStory.src = "images/rondine/rondineAlzata.webp";
             controllo = true;
+            
+            //animazione di testo1
+            animationText(document.getElementById('testo1'), "fadeIn");
         } else {
             if(controllo) {
             birdImgStory.src = "images/rondine/rondineAliSu.webp";
@@ -180,6 +186,7 @@ function birdAnimation(bannerBoundingLeft, sittingBird, birdContainer, birdImgSt
     } else {
         sittingBird.style.opacity = "1";
         birdContainer.style.display = "none";
+        animationText(document.getElementById('testo1'), "fadeOut");
     }
 }
 
