@@ -51,8 +51,6 @@ document.addEventListener('DOMContentLoaded', function () {
         bannerContainer.style.height = calcTotalWidthFrames() - viewportWidth + vh + "px";
         sittingBirdContainer.style.width = window.screen.width + "px";
         sittingBirdEndContainer.style.width = window.screen.width + "px";
-        banner.style.top = "50%";
-        banner.style.transform = "translateY(-50%)";
         banner.style.width = bannerContainer.offsetHeight + viewportWidth + "px";
 
     }
