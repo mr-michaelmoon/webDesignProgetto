@@ -97,6 +97,7 @@ p {
     font-size: 2.5vh;
     user-select: text;
     z-index: 3;
+    white-space: nowrap;
 }
 
 #testo1 {
@@ -112,7 +113,6 @@ p {
 #testo3 {
     bottom: 12%;
     right: 5%;
-    
 }
 
 #testo4 {
@@ -177,7 +177,6 @@ p {
     bottom: 12%;
     left: 40%;
     font-style: italic;
-
 }
 
 #testo16 {
@@ -254,10 +253,6 @@ z-index: 2;
     top: 0;
     z-index: 2;
     right: 0;
-}
-
-#birdImgStory {
-    
 }
 
 #sittingBirdEndContainer {

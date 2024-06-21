@@ -2,6 +2,25 @@ const numFrames = 33;
 let lastScrollTop = 0;
 var controllo = false;
 
+
+// precaricamento immagini
+
+
+const imagesToPreload = [
+    "images/homepage.png",
+    "images/rondine/rondineSeduta.webp",
+];
+for(let i = 2; i < numFrames; i++) {
+    imagesToPreload.push(`images/framesBanner/frame-${i}.png`);
+}
+
+// Precarica le immagini
+imagesToPreload.forEach(src => {
+    const img = new Image();
+    img.src = src;
+});
+
+
 document.addEventListener('DOMContentLoaded', function () {
 
     var homepage = document.getElementById('homepage');
@@ -229,26 +248,26 @@ function allTexts() {
 
 //aggiunge i testi ai vari frame
 function addTexts(frames, texts) {
-    frames[0].insertAdjacentHTML("beforeend", "<div id='testo1' class='testiStoria'><p>"+ texts[0] +"</p></div>");
-    frames[1].insertAdjacentHTML("beforeend", "<div id='testo2' class='testiStoria'><p>"+ texts[1] +"</p></div>");
-    frames[1].insertAdjacentHTML("beforeend", "<div id='testo3' class='testiStoria'><p>"+ texts[2] +"</p></div>");
-    frames[2].insertAdjacentHTML("beforeend", "<div id='testo4' class='testiStoria'><p>"+ texts[3] +"</p></div>");
-    frames[4].insertAdjacentHTML("beforeend", "<div id='testo5' class='testiStoria'><p>"+ texts[4] +"</p></div>");
-    frames[5].insertAdjacentHTML("beforeend", "<div id='testo6' class='testiStoria'><p>"+ texts[5] +"</p></div>");
-    frames[7].insertAdjacentHTML("beforeend", "<div id='testo7' class='testiStoria'><p>"+ texts[6] +"</p></div>");
-    frames[7].insertAdjacentHTML("beforeend", "<div id='testo8' class='testiStoria'><p>"+ texts[7] +"</p></div>");
-    frames[9].insertAdjacentHTML("beforeend", "<div id='testo9' class='testiStoria'><p>"+ texts[8] +"</p></div>");
-    frames[11].insertAdjacentHTML("beforeend", "<div id='testo10' class='testiStoria'><p>"+ texts[9] +"</p></div>");
-    frames[13].insertAdjacentHTML("beforeend", "<div id='testo11' class='testiStoria'><p>"+ texts[10] +"</p></div>");
-    frames[14].insertAdjacentHTML("beforeend", "<div id='testo12' class='testiStoria'><p>"+ texts[11] +"</p></div>");
-    frames[15].insertAdjacentHTML("beforeend", "<div id='testo13' class='testiStoria'><p>"+ texts[12] +"</p></div>");
-    frames[16].insertAdjacentHTML("beforeend", "<div id='testo14' class='testiStoria'><p>"+ texts[13] +"</p></div>");
-    frames[17].insertAdjacentHTML("beforeend", "<div id='testo15' class='testiStoria'><p>"+ texts[14] +"</p></div>");
-    frames[20].insertAdjacentHTML("beforeend", "<div id='testo16' class='testiStoria'><p>"+ texts[15] +"</p></div>");
-    frames[22].insertAdjacentHTML("beforeend", "<div id='testo17' class='testiStoria'><p>"+ texts[16] +"</p></div>");
-    frames[23].insertAdjacentHTML("beforeend", "<div id='testo18' class='testiStoria'><p>"+ texts[17] +"</p></div>");
-    frames[25].insertAdjacentHTML("beforeend", "<div id='testo19' class='testiStoria'><p>"+ texts[18] +"</p></div>");
-    frames[27].insertAdjacentHTML("beforeend", "<div id='testo20' class='testiStoria'><p>"+ texts[19] +"</p></div>");
-    frames[28].insertAdjacentHTML("beforeend", "<div id='testo21' class='testiStoria'><p>"+ texts[20] +"</p></div>");
-    frames[30].insertAdjacentHTML("beforeend", "<div id='testo22' class='testiStoria'><p>"+ texts[21] +"</p></div>");
+    frames[0].insertAdjacentHTML("beforeend", "<p id='testo1' class='testiStoria'>"+ texts[0] +"</p>");
+    frames[1].insertAdjacentHTML("beforeend", "<p id='testo2' class='testiStoria'>"+ texts[1] +"</p>");
+    frames[1].insertAdjacentHTML("beforeend", "<p id='testo3' class='testiStoria'>"+ texts[2] +"</p>");
+    frames[2].insertAdjacentHTML("beforeend", "<p id='testo4' class='testiStoria'>"+ texts[3] +"</p>");
+    frames[4].insertAdjacentHTML("beforeend", "<p id='testo5' class='testiStoria'>"+ texts[4] +"</p>");
+    frames[5].insertAdjacentHTML("beforeend", "<p id='testo6' class='testiStoria'>"+ texts[5] +"</p>");
+    frames[7].insertAdjacentHTML("beforeend", "<p id='testo7' class='testiStoria'>"+ texts[6] +"</p>");
+    frames[7].insertAdjacentHTML("beforeend", "<p id='testo8' class='testiStoria'>"+ texts[7] +"</p>");
+    frames[9].insertAdjacentHTML("beforeend", "<p id='testo9' class='testiStoria'>"+ texts[8] +"</p>");
+    frames[11].insertAdjacentHTML("beforeend", "<p id='testo10' class='testiStoria'>"+ texts[9] +"</p>");
+    frames[13].insertAdjacentHTML("beforeend", "<p id='testo11' class='testiStoria'>"+ texts[10] +"</p>");
+    frames[14].insertAdjacentHTML("beforeend", "<p id='testo12' class='testiStoria'>"+ texts[11] +"</p>");
+    frames[15].insertAdjacentHTML("beforeend", "<p id='testo13' class='testiStoria'>"+ texts[12] +"</p>");
+    frames[16].insertAdjacentHTML("beforeend", "<p id='testo14' class='testiStoria'>"+ texts[13] +"</p>");
+    frames[17].insertAdjacentHTML("beforeend", "<p id='testo15' class='testiStoria'>"+ texts[14] +"</p>");
+    frames[20].insertAdjacentHTML("beforeend", "<p id='testo16' class='testiStoria'>"+ texts[15] +"</p>");
+    frames[22].insertAdjacentHTML("beforeend", "<p id='testo17' class='testiStoria'>"+ texts[16] +"</p>");
+    frames[23].insertAdjacentHTML("beforeend", "<p id='testo18' class='testiStoria'>"+ texts[17] +"</p>");
+    frames[25].insertAdjacentHTML("beforeend", "<p id='testo19' class='testiStoria'>"+ texts[18] +"</p>");
+    frames[27].insertAdjacentHTML("beforeend", "<p id='testo20' class='testiStoria'>"+ texts[19] +"</p>");
+    frames[28].insertAdjacentHTML("beforeend", "<p id='testo21' class='testiStoria'>"+ texts[20] +"</p>");
+    frames[30].insertAdjacentHTML("beforeend", "<p id='testo22' class='testiStoria'>"+ texts[21] +"</p>");
 }
