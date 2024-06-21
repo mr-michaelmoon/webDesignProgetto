@@ -41,8 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
         banner.style.width = bannerContainer.offsetHeight + viewportWidth + "px";
 
         window.requestAnimationFrame(() => {
-            var bannerBounding = document.getElementById('banner').getBoundingClientRect();
-            birdAnimation(bannerBounding.left, sittingBird, birdContainer, birdImgStory, viewportWidth)
+            birdAnimation(sittingBird, birdContainer, birdImgStory, viewportWidth)
         });
     }
 
@@ -58,7 +57,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     document.addEventListener('scroll', function (e) {
-        var bannerBounding = banner.getBoundingClientRect();
         var bannerContainerBounding = bannerContainer.getBoundingClientRect();
         var sittingBirdBounding = sittingBird.getBoundingClientRect();
 
@@ -81,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             }
 
-            birdAnimation(bannerBounding.left, sittingBird, birdContainer, birdImgStory, viewportWidth);
+            birdAnimation(sittingBird, birdContainer, birdImgStory, viewportWidth);
 
         }
 
@@ -107,7 +105,7 @@ function menuAnimation(birdBoundingT, menu, viewportHeight) {
 
 function createFramesBanner(insiemeFramesBanner) {
     for (var i = 2; i < numFrames; i++) {
-        insiemeFramesBanner.innerHTML += "<div class='frameBanner'><img draggable='false' src='images/framesBanner/frame-" + i + ".png' /></div>";
+        insiemeFramesBanner.innerHTML += "<div class='frameBanner'><img draggable='false' src='images/framesBanner/frame-" + i + ".png' alt='immagine di una parte dello sfondo della storia della rondine'></div>";
     }
 }
 // inserisce i testi nei frame
@@ -132,7 +130,7 @@ function animationText(text, fadeType) {
     text.style.animation = fadeType + " 1s forwards";
 }
 
-function birdAnimation(bannerBoundingLeft, sittingBird, birdContainer, birdImgStory, viewportWidth) {
+function birdAnimation( sittingBird, birdContainer, birdImgStory, viewportWidth) {
     let halfViewportWidth = viewportWidth / 2;
     var scrollTop = window.scrollY || document.documentElement.scrollTop;
     var birdImgStoryBounding = birdImgStory.getBoundingClientRect();
