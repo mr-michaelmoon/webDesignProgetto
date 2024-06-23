@@ -20,9 +20,10 @@ document.addEventListener('DOMContentLoaded', function () {
     var menu = document.getElementById('menu');
     var viewportHeight = window.innerHeight;
     var viewportWidth = window.innerWidth;
-    banner.style.height = window.screen.height + "px";
-    banner.style.width = window.screen.width + "px";
+    // banner.style.height = window.screen.height + "px";
     homepage.style.width = window.screen.width + "px";
+    banner.style.width = window.screen.width + "px";
+    banner.style.height = homepage.offsetHeight/1.5 + "px";
 
     // creazione frame delle immagini del banner 
     createFramesBanner(insiemeFramesBanner);

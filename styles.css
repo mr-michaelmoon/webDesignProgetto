@@ -26,7 +26,7 @@ p {
 
 #homepage {
     min-height: 100vh;
-    width: 100vw;
+    min-width: 100vw;
     margin-bottom: -1px;
     position: relative;
 }
@@ -45,7 +45,7 @@ p {
 }
 
 #banner {
-    height: 100vh;
+    min-height: 100vh;
     width: 100%;
     position:relative;
 }
@@ -58,14 +58,14 @@ p {
 
 .frameBanner {
     height: 100%;
-    width: auto;
+    min-width: 100vw;
     flex: none;
     position: relative;
     
 }
 
 .frameBanner img {
-    width: auto;
+    width: 100%;
     height: 100%;
     object-fit: cover;
     position: relative;
