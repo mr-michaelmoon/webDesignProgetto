@@ -4,7 +4,6 @@ var controllo = false;
 
 
 
-
 document.addEventListener('DOMContentLoaded', function () {
 
     var homepage = document.getElementById('homepage');
@@ -20,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var menu = document.getElementById('menu');
     var viewportHeight = window.innerHeight;
     var viewportWidth = window.innerWidth;
-    // banner.style.height = window.screen.height + "px";
+
     homepage.style.width = window.screen.width + "px";
     banner.style.width = window.screen.width + "px";
     banner.style.height = homepage.offsetHeight/1.5 + "px";
@@ -30,13 +29,23 @@ document.addEventListener('DOMContentLoaded', function () {
     insertTextsFrame();
     menu.style.opacity = "0";
 
+    
+    
+    if(viewportHeight > viewportWidth) {
+        homepage.querySelector('img').style.width = "auto";
+
+    } else {
+        homepage.querySelector('img').style.width = "100%";
+    }
+
     //si attiva quando si ricarica la pagina
     window.onload = function () {
 
         viewportWidth = window.innerWidth;
         bannerContainer.style.height = calcTotalWidthFrames() - viewportWidth + "px";
-        sittingBirdContainer.style.width = window.screen.width + "px";
-        sittingBirdEndContainer.style.width = window.screen.width + "px";
+        var firstEl = insiemeFramesBanner.children[0].offsetWidth;
+        sittingBirdContainer.style.width = firstEl + "px";
+        sittingBirdEndContainer.style.width = firstEl + "px";
         birdImgStory.style.width = sittingBird.offsetWidth + "px";
         menuAnimation(sittingBird.getBoundingClientRect().top, menu, viewportHeight);
         banner.style.width = bannerContainer.offsetHeight + viewportWidth + "px";
@@ -51,10 +60,15 @@ document.addEventListener('DOMContentLoaded', function () {
         viewportWidth = window.innerWidth;
         var vh = Math.abs(viewportHeight - window.innerHeight); // calcolo differenza tra viewportHeight vecchio e quello nuovo
         bannerContainer.style.height = calcTotalWidthFrames() - viewportWidth + vh + "px";
-        sittingBirdContainer.style.width = window.screen.width + "px";
-        sittingBirdEndContainer.style.width = window.screen.width + "px";
+        var firstEl = insiemeFramesBanner.children[0].offsetWidth;
+        sittingBirdContainer.style.width = firstEl + "px";
+        sittingBirdEndContainer.style.width = firstEl + "px";
         banner.style.width = bannerContainer.offsetHeight + viewportWidth + "px";
 
+        birdImgStory.style.width = sittingBird.offsetWidth + "px";
+        homepage.style.width = window.screen.width + "px";
+        banner.style.width = window.screen.width + "px";
+        banner.style.height = homepage.offsetHeight/1.5 + "px";
     }
 
     document.addEventListener('scroll', function (e) {
