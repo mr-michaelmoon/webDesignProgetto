@@ -57,7 +57,6 @@ document.addEventListener('DOMContentLoaded', function () {
         //se si è nella storia (in bannerContainer)
         if (bannerContainerBounding.top <= viewportHeight && bannerContainerBounding.bottom >= viewportHeight) {
 
-
             if (sittingBirdBounding.top <= viewportHeight / 2) {
 
                 banner.style.position = "fixed";
@@ -71,8 +70,14 @@ document.addEventListener('DOMContentLoaded', function () {
                     banner.style.transform = "translateY(0)";
                 }
             }
-
+            
             birdAnimation(sittingBird, birdContainer, birdImgStory, viewportWidth);
+        }
+        if(bannerContainerBounding.bottom <= viewportHeight) {
+            banner.style.position = "relative";
+            // banner.style.left = "";
+            banner.style.top = "100%";
+            banner.style.transform = "translateY(-100%)";
         }
 
         menuAnimation(sittingBirdBounding.top, menu, viewportHeight);

@@ -10,6 +10,10 @@ html {
     /* line-height: 8px; */
 }
 
+html::-webkit-scrollbar {
+    display: none;
+}
+
 body {
     margin: 0;
 }
@@ -61,7 +65,10 @@ p {
     min-width: 100vw;
     flex: none;
     position: relative;
-    
+}
+
+.frameBanner:last-child {
+    min-width: auto;
 }
 
 .frameBanner img {
@@ -266,6 +273,11 @@ z-index: 2;
 #uccelloSedutoFine {
     opacity: 0;
 }
+
+#testoContainer {
+    height: 100vh;
+}
+
 
 /* -----------------------------menu----------------------------- */
 menu, ul {
