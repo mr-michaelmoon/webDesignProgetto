@@ -6,7 +6,7 @@ html, body {
 html {
     font-family: Arial;
     color: #11053b;
-    font-size: 1.5em;
+    font-size: 1em;
     /* line-height: 8px; */
 }
 
@@ -26,7 +26,7 @@ p {
 
 #homepage {
     min-height: 100vh;
-    width: 100vw;
+    min-width: 100vw;
     margin-bottom: -1px;
     position: relative;
 }
@@ -45,7 +45,7 @@ p {
 }
 
 #banner {
-    height: 100vh;
+    min-height: 100vh;
     width: 100%;
     position:relative;
 }
@@ -58,14 +58,14 @@ p {
 
 .frameBanner {
     height: 100%;
-    width: auto;
+    min-width: 100vw;
     flex: none;
     position: relative;
     
 }
 
 .frameBanner img {
-    width: auto;
+    width: 100%;
     height: 100%;
     object-fit: cover;
     position: relative;
@@ -94,74 +94,64 @@ p {
     right: 50%;
     padding: 1.3%;
     font-weight: bold;
+    font-size: 2.5vh;
     user-select: text;
     z-index: 3;
+    white-space: nowrap;
 }
 
 #testo1 {
-    width: 35%;
     bottom: 12%;
     right: 0%;
 }
 
 #testo2 {
-    width: 15%;
     top: 12%;
     left: 5%;
 }
 
 #testo3 {
-    width: 20%;
     bottom: 12%;
     right: 5%;
-    
 }
 
 #testo4 {
-    width: 15%;
     top: 12%;
     right: 5%;
 }
 
 #testo5 {
-    width: 25%;
     top: 12%;
     right: 25%;
 }
 
 #testo6 {
-    width: 25%;
     bottom: 12%;
     right: 5%;
     font-style: italic;
 }
 
 #testo7 {
-    width: 25%;
     top: 12%;
     left: 5%;
 }
 
 #testo8 {
-    width: 25%;
     bottom: 12%;
     right: 5%;
 }
 
 #testo9 {
-    width: 30%;
     top: 12%;
     right: 5%;
 }
 
 #testo10 {
-    width: 30%;
-    bottom: 10%;
+    bottom: 12%;
     left: 5%;
 }
 
 #testo11 {
-    width: 45%;
     top: 12%;
     left: 15%;
     font-style: italic;
@@ -169,72 +159,59 @@ p {
 }
 
 #testo12 {
-    width: 43%;
     bottom: 12%;
     left: 25%;
 }
 
 #testo13 {
-    width: 25%;
     top: 12%;
     left: 5%;
 }
 
 #testo14 {
-    width: 50%;
     top: 12%;
     right: 5%;
 }
 
 #testo15 {
-    width: 20%;
     bottom: 12%;
     left: 40%;
     font-style: italic;
-
 }
 
 #testo16 {
-    width: 25%;
     top: 12%;
     left: 27%;
     color: white;
 }
 
 #testo17 {
-    width: 25%;
     top: 12%;
     right: 5%;
 }
 
 #testo18 {
-    width: 33%;
     bottom: 12%;
     right: 5%;
 }
 
 #testo19 {
-    width: 25%;
     top: 12%;
     left: 30%;
 }
 
 #testo20 {
-    width: 25%;
     bottom: 12%;
     left: 5%;
 }
 
 #testo21 {
-    width: 28%;
     top: 12%;
     right: 5%;
     font-style: italic;
-
 }
 
 #testo22 {
-    width: 25%;
     top: 12%;
     left: 10%;
     color: white;
@@ -245,6 +222,7 @@ p {
 #sittingBirdContainer {
 height: 100%;
 width: auto;
+min-width: 100vw;
 position: absolute;
 top: 0;
 z-index: 2;
@@ -263,8 +241,8 @@ z-index: 2;
     display: none;
     top: 50vh;
     left: 50vw;
-    
     transform: translate(-50%, -50%);
+    pointer-events: none;
 }
 
 #sittingBirdEnd {
@@ -274,10 +252,6 @@ z-index: 2;
     top: 0;
     z-index: 2;
     right: 0;
-}
-
-#birdImgStory {
-    
 }
 
 #sittingBirdEndContainer {
@@ -352,8 +326,6 @@ menu li a img {
 
 }
 /* ------------------------------------------------ */
-
-
 
 @keyframes fadeIn {
     from {
