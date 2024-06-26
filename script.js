@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var viewportHeight = window.innerHeight;
     var viewportWidth = window.innerWidth;
 
-    homepage.style.width = window.screen.width + "px";
+    // homepage.style.width = window.screen.width + "px";
     banner.style.width = window.screen.width + "px";
     banner.style.height = homepage.offsetHeight / 1.5 + "px";
 
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     //se in verticale mette width dell'immagine homepage a auto 
     homepage.querySelector('img').style.width = viewportHeight > viewportWidth ? "auto" : "100%";
-    
+
     bannerContainer.style.height = calcTotalWidthFrames() - viewportWidth + "px";
 
     //si attiva quando si ricarica la pagina
@@ -97,6 +97,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     });
 });
+
 
 // funzioni -------------------------------------------------------
 
@@ -188,7 +189,7 @@ function calcTotalWidthFrames() {
     var totalFramesWidth = 0;
     var frames = document.getElementById('insiemeFramesBanner').querySelectorAll('img');
     frames.forEach(function (frame) {
-        totalFramesWidth += frame.width;
+        totalFramesWidth += frame.clientWidth;
     });
     return totalFramesWidth;
 }
