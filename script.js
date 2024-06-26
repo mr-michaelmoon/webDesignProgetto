@@ -1,6 +1,7 @@
 const numFrames = 33;
 let lastScrollTop = 0;
 var controllo = false;
+var firstTime = false;
 
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -11,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var sittingBirdContainer = document.getElementById('sittingBirdContainer');
     var sittingBirdEndContainer = document.getElementById('sittingBirdEndContainer');
     var sittingBird = document.getElementById('uccelloSeduto');
+    var sittingBirdEnd = document.getElementById('uccelloSedutoFine');
     var birdContainer = document.getElementById('birdContainer');
     var birdImgStory = document.getElementById('birdImgStory');
     var menu = document.getElementById('menu');
@@ -53,6 +55,8 @@ document.addEventListener('DOMContentLoaded', function () {
     document.addEventListener('scroll', function (e) {
         var bannerContainerBounding = bannerContainer.getBoundingClientRect();
         var sittingBirdBounding = sittingBird.getBoundingClientRect();
+        var birdImgStoryBounding = birdImgStory.getBoundingClientRect();
+        var sittingBirdEndBounding = sittingBirdEnd.getBoundingClientRect();
 
         //se si è nella storia (in bannerContainer)
         if (bannerContainerBounding.top <= viewportHeight && bannerContainerBounding.bottom >= viewportHeight) {
@@ -75,11 +79,15 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         if(bannerContainerBounding.bottom <= viewportHeight) {
             banner.style.position = "relative";
-            // banner.style.left = "";
             banner.style.top = "100%";
             banner.style.transform = "translateY(-100%)";
         }
 
+
+        let controlloBird = birdImgStoryBounding.left >= sittingBirdEndBounding.left || parseInt(bannerContainerBounding.bottom) <= window.innerHeight;
+        birdImgStory.style.opacity = controlloBird ? "0" : "1";
+        sittingBirdEnd.style.opacity = controlloBird ? "1" : "0";
+            
         menuAnimation(sittingBirdBounding.top, menu, viewportHeight);
         horizontalScroll(bannerContainerBounding, banner, viewportHeight)
 
@@ -128,7 +136,7 @@ function birdAnimation(sittingBird, birdContainer, birdImgStory, viewportWidth) 
     var bannerContainerBounding = bannerContainer.getBoundingClientRect();
 
     //se ci si trova tra la meta dell'uccello seduto all'inizio e la fine della storia
-    if (sittingBird.getBoundingClientRect().left + (sittingBird.offsetWidth / 2) < halfViewportWidth && bannerContainerBounding.bottom >= 0) {
+    if (sittingBird.getBoundingClientRect().left + (sittingBird.offsetWidth / 2) + 5 < halfViewportWidth && bannerContainerBounding.bottom >= 0 && firstTime) {
         sittingBird.style.opacity = "0";
         birdContainer.style.display = "block";
         const value = 70; // quantita di scroll per cambiare uccello
@@ -168,6 +176,7 @@ function birdAnimation(sittingBird, birdContainer, birdImgStory, viewportWidth) 
         birdContainer.style.display = "none";
         animationText(document.getElementById('testo1'), "fadeOut");
     }
+    firstTime = true;
 }
 
 //calcola la larghezza totale di tutti i frame della storia
