@@ -288,7 +288,7 @@ p {
 }
 #loadingText {
     font-family: Rouli;
-    font-size: 16vh;
+    font-size: 9vh;
     position: fixed;
     top: 55%;
     text-align: center;
