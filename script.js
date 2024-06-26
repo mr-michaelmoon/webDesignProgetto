@@ -27,13 +27,18 @@ document.addEventListener('DOMContentLoaded', function () {
     createFramesBanner(insiemeFramesBanner);
     insertTextsFrame();
     menu.style.opacity = "0";
+
+
     //se in verticale mette width dell'immagine homepage a auto 
     homepage.querySelector('img').style.width = viewportHeight > viewportWidth ? "auto" : "100%";
+    
+    bannerContainer.style.height = calcTotalWidthFrames() - viewportWidth + "px";
 
     //si attiva quando si ricarica la pagina
     window.onload = function () {
         menuAnimation(sittingBird.getBoundingClientRect().top, menu, viewportHeight);
-        birdAnimation(sittingBird, birdContainer, birdImgStory, viewportWidth)
+        birdAnimation(sittingBird, birdContainer, birdImgStory, viewportWidth);
+
         //richiama funzione onresize()
         window.onresize();
     }
@@ -62,7 +67,6 @@ document.addEventListener('DOMContentLoaded', function () {
         if (bannerContainerBounding.top <= viewportHeight && bannerContainerBounding.bottom >= viewportHeight) {
 
             if (sittingBirdBounding.top <= viewportHeight / 2) {
-
                 banner.style.position = "fixed";
                 banner.style.top = "50%";
                 banner.style.transform = "translateY(-50%)";
