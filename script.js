@@ -246,8 +246,7 @@ function allTextsBanner() {
 
 function allTextsChildrens() {
     return [
-        "Le rondini possono volare dall’Africa all’Europa senza problemi, ma per noi umani attraversare i confini può essere molto più complicato.<br><br> Le rondini possono volare lontano senza bisogno di permessi o documenti. Attraverso tanti paesi diversi e nessuno le ferma. <br><br>Per noi umani, viaggiare da un paese all’altro richiede spesso documenti speciali chiamati \“visti\” e dobbiamo passare attraverso controlli ai confini. <br><br>Alcuni bambini e adulti provenienti da molti paesi del mondo non possono spostarsi liberamente come le rondini perché ci sono delle regole diverse per ogni paese.",
-
+        "Le rondini possono volare dall\'Africa all\'Europa senza problemi, ma per noi umani attraversare i confini pu<span class='charSpecial'>ò</span> essere molto pi<span class='charSpecial'>ù</span> complicato.<br><br> Le rondini possono volare lontano senza bisogno di permessi o documenti. Attraverso tanti paesi diversi e nessuno le ferma. <br><br>Per noi umani, viaggiare da un paese all\’altro richiede spesso documenti speciali chiamati \“visti\” e dobbiamo passare attraverso controlli ai confini. <br><br>Alcuni bambini e adulti provenienti da molti paesi del mondo non possono spostarsi liberamente come le rondini perché ci sono delle regole diverse per ogni paese.",
     ];
 }
 
