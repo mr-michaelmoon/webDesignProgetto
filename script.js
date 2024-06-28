@@ -1,4 +1,5 @@
 const numFrames = 33;
+const numFramesBambini = 22;
 let lastScrollTop = 0;
 var controllo = false;
 var firstTime = false;
@@ -16,6 +17,9 @@ document.addEventListener('DOMContentLoaded', function () {
     var birdContainer = document.getElementById('birdContainer');
     var birdImgStory = document.getElementById('birdImgStory');
     var menu = document.getElementById('menu');
+    var insiemeFramesBambini = document.getElementById('insiemeFramesBambini');
+    var animazioneDissolvenza = document.getElementById('animazioneDissolvenza');
+    var dissolvenza = document.getElementById('dissolvenza');
     var viewportHeight = window.innerHeight;
     var viewportWidth = window.innerWidth;
 
@@ -30,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     //se in verticale mette width dell'immagine homepage a auto 
-    homepage.querySelector('img').style.width = viewportHeight > viewportWidth ? "auto" : "100%";
+    // homepage.querySelector('img').style.width = viewportHeight > viewportWidth ? "auto" : "100%";
 
     bannerContainer.style.height = calcTotalWidthFrames() - viewportWidth + "px";
 
@@ -41,6 +45,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
         //richiama funzione onresize()
         window.onresize();
+        createFramesKids(insiemeFramesBambini);
+        addTextsChildren();
+        
     }
 
     //si attiva quando si modifica la dimensione della finestra
@@ -48,13 +55,12 @@ document.addEventListener('DOMContentLoaded', function () {
         viewportWidth = window.innerWidth;
         var vh = Math.abs(viewportHeight - window.innerHeight); // calcolo differenza tra viewportHeight vecchio e quello nuovo
         bannerContainer.style.height = calcTotalWidthFrames() - viewportWidth + vh + "px";
-        var firstEl = insiemeFramesBanner.children[0].offsetWidth;
-        sittingBirdContainer.style.width = firstEl + "px";
-        sittingBirdEndContainer.style.width = firstEl + "px";
         banner.style.width = bannerContainer.offsetHeight + viewportWidth + "px";
         banner.style.height = homepage.offsetHeight / 1.5 + "px";
-        birdImgStory.style.width = sittingBird.offsetWidth + "px";
-        homepage.style.width = window.screen.width + "px";
+        birdImgStory.style.width = (3/4)*sittingBird.offsetWidth + "px";
+        homepage.style.width = insiemeFramesBanner.firstElementChild.offsetWidth + "px";
+        sittingBirdContainer.style.width = insiemeFramesBanner.firstElementChild.offsetWidth + "px";
+        sittingBirdEndContainer.style.width = insiemeFramesBanner.firstElementChild.offsetWidth + "px";
     }
 
     document.addEventListener('scroll', function (e) {
@@ -62,9 +68,10 @@ document.addEventListener('DOMContentLoaded', function () {
         var sittingBirdBounding = sittingBird.getBoundingClientRect();
         var birdImgStoryBounding = birdImgStory.getBoundingClientRect();
         var sittingBirdEndBounding = sittingBirdEnd.getBoundingClientRect();
+        var animazioneDissolvenzaBounding = animazioneDissolvenza.getBoundingClientRect();
 
         //se si è nella storia (in bannerContainer)
-        if (bannerContainerBounding.top <= viewportHeight && bannerContainerBounding.bottom >= viewportHeight) {
+        if (bannerContainerBounding.top <= viewportHeight &&  animazioneDissolvenzaBounding.bottom >= viewportHeight) {
 
             if (sittingBirdBounding.top <= viewportHeight / 2) {
                 banner.style.position = "fixed";
@@ -81,10 +88,17 @@ document.addEventListener('DOMContentLoaded', function () {
             
             birdAnimation(sittingBird, birdContainer, birdImgStory, viewportWidth);
         }
-        if(bannerContainerBounding.bottom <= viewportHeight) {
+        if(bannerContainerBounding.bottom + animazioneDissolvenza.offsetHeight <= viewportHeight) {
             banner.style.position = "relative";
             banner.style.top = "100%";
             banner.style.transform = "translateY(-100%)";
+        }
+        if(dissolvenza.getBoundingClientRect().top <= 0) {
+            dissolvenza.style.opacity = Math.abs(dissolvenza.getBoundingClientRect().top) / (dissolvenza.offsetHeight - viewportHeight);
+        }
+        if(animazioneDissolvenzaBounding.bottom <= viewportHeight) {
+            console.log("ciao");
+            
         }
 
 
@@ -112,10 +126,18 @@ function createFramesBanner(insiemeFramesBanner) {
         insiemeFramesBanner.innerHTML += "<div class='frameBanner'><img draggable='false' src='images/framesBanner/frame-" + i + ".png' alt='immagine di una parte dello sfondo della storia della rondine'></div>";
 }
 
+function createFramesKids(insiemeFramesBambini) {
+    for (var i = 1; i <= numFramesBambini; i++) {
+        insiemeFramesBambini.innerHTML += "<div class='frameBambini no-caret' id='frameBambini"+ i +"'><img src='images/storiaBambini/16_9_Verticali/v" + i +".png'></div>";
+        
+    }
+
+}
+
 // inserisce i testi nei frame
 function insertTextsFrame() {
     var frames = document.getElementById('insiemeFramesBanner').querySelectorAll('div');
-    var texts = allTexts();
+    var texts = allTextsBanner();
     addTexts(frames, texts);
 
 }
@@ -195,8 +217,9 @@ function calcTotalWidthFrames() {
 }
 
 //restituisce array con i testi della storia
-function allTexts() {
-    return ["Una rondine viveva felice in un piccolo nido in Kenya. <br>Ogni giorno, volava libera sotto il cielo azzurro, <br>sorvolando le verdi savane e i fiumi scintillanti. <br>Ma con l\'arrivo dell\'autunno, la rondine sent<span class='charSpecial'>ì</span> <br>un forte desiderio di partire per un lungo viaggio, <br>un viaggio che l\'avrebbe portata fino all\'Italia.",
+function allTextsBanner() {
+    return [
+        "Una rondine viveva felice in un piccolo nido in Kenya. <br>Ogni giorno, volava libera sotto il cielo azzurro, <br>sorvolando le verdi savane e i fiumi scintillanti. <br>Ma con l\'arrivo dell\'autunno, la rondine sent<span class='charSpecial'>ì</span> <br>un forte desiderio di partire per un lungo viaggio, <br>un viaggio che l\'avrebbe portata fino all\'Italia.",
         "Un mattino presto, la rondine spieg<span class='charSpecial'>ò</span> le ali <br>e inizi<span class='charSpecial'>ò</span> il suo volo verso nord.",
         "Il primo tratto del viaggio fu <br>piacevole e pieno di avventure,<br>ma presto arriv<span class='charSpecial'>ò</span> davanti a<br>una sfida imponente…",
         "…Il deserto del Sahara.",
@@ -221,10 +244,30 @@ function allTexts() {
     ];
 }
 
+function allTextsChildrens() {
+    return [
+        "Le rondini possono volare dall’Africa all’Europa senza problemi, ma per noi umani attraversare i confini può essere molto più complicato.<br><br> Le rondini possono volare lontano senza bisogno di permessi o documenti. Attraverso tanti paesi diversi e nessuno le ferma. <br><br>Per noi umani, viaggiare da un paese all’altro richiede spesso documenti speciali chiamati \“visti\” e dobbiamo passare attraverso controlli ai confini. <br><br>Alcuni bambini e adulti provenienti da molti paesi del mondo non possono spostarsi liberamente come le rondini perché ci sono delle regole diverse per ogni paese.",
+
+    ];
+}
+
 //aggiunge i testi ai vari frame
 function addTexts(frames, texts) {
     let positionTexts = [0, 1, 1, 2, 3, 4, 7, 7, 9, 11, 13, 14, 15, 16, 17, 20, 22, 23, 25, 27, 28, 30];
     for (let i = 0; i < positionTexts.length; i++) {
         frames[positionTexts[i]].insertAdjacentHTML("beforeend", "<p id='testo" + (i + 1) + "' class='testiStoria'>" + texts[i] + "</p>");
     }
+}
+
+function addTextsChildren() {
+    let frames = document.getElementById('insiemeFramesBambini').querySelectorAll('.frameBambini');
+    let texts = allTextsChildrens();
+    let positionTexts = [3];
+    for (let i = 0; i < positionTexts.length; i++) {
+        frames[positionTexts[i]-1].insertAdjacentHTML("beforeend", "<p id='testo" + (i+1) + "' class='testiStoria'>" + texts[i] + "</p>");
+    }
+}
+
+function addTitleChildren() {
+    
 }
