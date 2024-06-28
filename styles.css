@@ -8,6 +8,7 @@ html {
     color: #11053b;
     font-size: 1em;
     /* line-height: 8px; */
+    
 }
 
 html::-webkit-scrollbar {
@@ -27,10 +28,17 @@ p {
     text-align: left;
 }
 
+.no-caret {
+    user-select: text;
+    -webkit-user-select: text; /* Per compatibilità con i browser WebKit */
+    -moz-user-select: text; /* Per compatibilità con Firefox */
+    caret-color: transparent; /* Nasconde il cursore */
+}
+
 #homepage {
     min-height: 100vh;
     min-width: 100vw;
-    margin-bottom: -1px;
+    margin-bottom: -3px;
     position: relative;
     
 }
@@ -38,12 +46,28 @@ p {
 #homepage img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    
+    object-fit: cover;   
 }
 
-#textContainer {
+@media screen and (max-width: 480px) {
+    #homepage img {
+        width: auto;
+    }
+}
+
+
+#animazioneDissolvenza {
     height: 100vh;
+}
+
+#dissolvenza {
+    height: 300vh;
+    position: relative;
+    top: -50vh;
+    transform: translateY(-50%);
+    z-index: 4;
+    background-color: #1e1c38;
+    opacity: 0;
 }
 
 /* ----------------------banner--------------------------------. */
@@ -376,6 +400,43 @@ z-index: 2;
     height: 100vh;
 }
 
+/* -----------------------------bambini----------------------------- */
+
+    #insiemeFramesBambini {
+        position: relative;
+        color: white;
+        background-color: white;
+    }
+
+    .frameBambini {
+        width: 100%;
+        position: relative;
+        margin-top: -2px;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .frameBambini img {
+        width: 100%;
+    }
+
+    #animazioneTesto {
+    }
+
+    .frameBambini .containerText {
+        text-align: center;
+    }
+
+    .frameBambini p {
+        text-align: center;
+        text-wrap: wrap;
+        width: 70%;
+        min-height: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
 
 /* -----------------------------menu----------------------------- */
 menu, ul {
@@ -428,6 +489,7 @@ menu a img {
     flex-direction: column;
     justify-content: center;
     left: -100%;
+    z-index: 10;
 }
 
 menu li a img {
