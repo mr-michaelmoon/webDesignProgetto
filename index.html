@@ -3,9 +3,12 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Web Design Project</title>
     <link rel="stylesheet" href="styles.css">
 
+    <script type="module" src="script.js"></script>
+    <script type="text/javascript" src="modules/jquery.min.js"></script>
 </head>
 
 <body>
@@ -14,18 +17,22 @@
     </div>
 
     <div id="bannerContainer"> <!-- div per avere altezza uguale a lunghezza del banner per scroll orizzontale-->
+        
         <div id="banner">
-            <div id="insiemeFramesBanner">
-                <!-- i frame delle immagini vengono create con js -->
-            </div>
             
-            <div id="sittingBirdContainer">
+            <div id="insiemeFramesBanner">
+                <!-- i frame delle immagini vengono create con js -->    
+            </div>
+
+            
+            <div id="sittingBirdContainer" class="no-caret">
                 <img draggable="false" src="images/rondine/rondineSeduta.webp" class="birds" id="uccelloSeduto" alt="immagine della rondine seduta su un ramo">
             </div>
 
-            <div id="sittingBirdEndContainer">
+            <div id="sittingBirdEndContainer" class="no-caret">
                 <img draggable="false" src="images/rondine/rondineSeduta.webp" id="uccelloSedutoFine" class="birds" alt="immagine della rondine seduta su una casa">
             </div>
+
         </div>
         
 
@@ -34,29 +41,33 @@
         </div>
     </div>
 
-    <div id="textContainer">
+    <div id="animazioneDissolvenza">
+        <div id="dissolvenza"></div>
+    </div>
     
+    <div id="insiemeFramesBambini">
+        
     </div>
 
     <div id="menu">
         <menu>
-            <ul>
-                <li>
+            <ul >
+                <li class="no-caret">
                     <a href="#bannerContainer">
                         <img src="images/elementiMenu/iconeMenuWebp/iconaRondine.webp" alt="icona del menu per l'inizio della storia della rondine">
                     </a>
                 </li>
-                <li>
+                <li class="no-caret">
                     <a href="index.html">
                         <img src="images/elementiMenu/iconeMenuWebp/iconaNumero1.webp" alt="">
                     </a>
                 </li>
-                <li>
+                <li class="no-caret">
                     <a href="index.html">
                         <img src="images/elementiMenu/iconeMenuWebp/iconaNumero2.webp" alt="">
                     </a>
                 </li>
-                <li>
+                <li class="no-caret">
                     <a href="index.html">
                         <img src="images/elementiMenu/iconeMenuWebp/iconaNumero3.webp" alt="">
                     </a>
@@ -65,12 +76,28 @@
         </menu>
     </div>
 
-    <script type="module" src="script.js"></script>
 
-    <script src="modules/jquery.min.js"></script>
     <script type="text/javascript">
-        $('body').append('<div style="" id="loadingDiv"><div class="loading"><img id="loadingImage" src="images/spinner_giallo.gif" /><h3 id="loadingText">Caricamento...</h3></div></div>');
+        $('body').append('<div style="" id="loadingDiv"><div class="loading"><img id="loadingBird" src="" /><h3 id="loadingText">Caricamento...</h3></div></div>');
             $(window).on('load', function(){
+                var img1Path = 'images/loading/rondineGiu_.webp';
+                var img2Path = 'images/loading/rondineSu_.webp';
+                var imgElement = document.getElementById('loadingBird'); // Assume che ci sia un elemento <img> con id "loadingBird"
+
+                var images = [img1Path, img2Path];
+                var currentImageIndex = 0;
+
+                imgElement.src = images[currentImageIndex];
+                currentImageIndex = (currentImageIndex + 1) % images.length;
+
+                // Imposta l'intervallo per alternare le immagini ogni 3 secondi (3000 millisecondi)
+                const interId = setInterval(function () {
+                    imgElement.src = images[currentImageIndex];
+                    currentImageIndex = (currentImageIndex + 1) % images.length;
+                    if (document.readyState === 'complete') {
+                        clearInterval(interId);
+                    }
+                }, 300);
                 $('#loadingDiv').hide();
             });
             function removeLoader(){
