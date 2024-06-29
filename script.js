@@ -48,8 +48,10 @@ document.addEventListener('DOMContentLoaded', function () {
         //richiama funzione onresize()
         window.onresize();
         createFramesKids(insiemeFramesBambini);
+        addTitleChildren();
         addTextsChildren();
         addAnimationTextChildren();
+
     }
 
     //si attiva quando si modifica la dimensione della finestra
@@ -109,7 +111,7 @@ document.addEventListener('DOMContentLoaded', function () {
             
         menuAnimation(sittingBirdBounding.top, menu, viewportHeight);
         horizontalScroll(bannerContainerBounding, banner, viewportHeight);
-        animationTextChildren();
+            animationTextChildren();
 
     });
 });
@@ -249,6 +251,17 @@ function allTextsBanner() {
 function allTextsChildrens() {
     return [
         "Le rondini possono volare dall\'Africa all\'Europa senza problemi, ma per noi umani attraversare i confini pu<span class='charSpecial'>ò</span> essere molto pi<span class='charSpecial'>ù</span> complicato.<br><br> Le rondini possono volare lontano senza bisogno di permessi o documenti. Attraverso tanti paesi diversi e nessuno le ferma. <br><br>Per noi umani, viaggiare da un paese all\’altro richiede spesso documenti speciali chiamati \“visti\” e dobbiamo passare attraverso controlli ai confini. <br><br>Alcuni bambini e adulti provenienti da molti paesi del mondo non possono spostarsi liberamente come le rondini perché ci sono delle regole diverse per ogni paese.",
+        "Hoa era una bambina di nove anni che viveva in un villaggio vicino al fiume Lwalaba, nella Repubblica democratica del Congo. Amava pescare con suo nonno e sognava di diventare una grande esploratrice. Ma la vita nel suo villaggio divenne troppo difficile a causa di inondazioni e povertà. Così, la sua famiglia decise di partire per un lungo viaggio verso l'Europa, in cerca di una vita migliore.<br><br>Il viaggio iniziò con una lunga traversata del fiume su una piccola barca per arrivare fino alle sabbie del Marocco. Navigarono per giorni, affrontando forti correnti e pericolosi animali del fiume. Una volta raggiunta la terraferma, continuarono a piedi attraverso le infinite dune del deserto. Hoa doveva essere attenta a ogni passo, aiutando la sua famiglia a superare gli ostacoli lungo il percorso, ma era una bambina determinata e tutte queste insidie non l’hanno mai fermata.<br><br>Dopo settimane di cammino, raggiunsero la grande città del Dakar, dove riuscirono a salire su un treno merci. Il viaggio in treno fu lungo e scomodo, con poche soste e poco cibo. Finalmente raggiunsero il mar mediterraneo dove s’imbarcarono su una barca verso l'Europa. La traversata fu piena di difficoltà, con tempeste e onde alte che rendevano il viaggio molto pericoloso.<br><br>Quando finalmente arrivarono in Italia, Hoa insieme alla sua famiglia erano esausti ma felici di aver raggiunto la terraferma siciliana, dove qui trovarono persone gentili e buone pronte a dare tutto il loro sostegno. In Italia, Hoa trovò una nuova scuola dove poté continuare a studiare e avere nuove speranze per il proprio futuro. Ogni giorno che passava scopriva nuovi amici e nuove avventure, sapendo che, nonostante le difficoltà, aveva trovato un posto sicuro dove crescere felice.",
+        "Un bambino di nome Abed viveva insieme alla sua famiglia afghana in Iran. Purtroppo non possedevano i documenti per avere gli stessi diritti dei cittadini iraniani e questa mancanza li portò ad andare via. Decisero quindi di partire per l’Europa nella speranza di una vita migliore.<br><br>Il viaggio era pericoloso e pieno d’incertezze, ma Abed era pronto ad affrontare ogni pericolo per la propria famiglia per un futuro migliore. Viaggiavano di notte su strade buie, scappando da ogni pericolo. Dopo giorni, arrivarono in un altro confine, la Turchia. In questo nuovo paese sono stati costretti a rimanere per mesi affrontando giorni interi con poco cibo e con le loro uniche cose portate nel viaggio. Ma in quelle notti, Abed sognava una casa sicura dove poteva andare a scuola e giocare con gli altri bambini.<br><br>Una volta aver superato il confine con la Turchia, ecco il mare. Ci vollero almeno quattro tentativi per affrontare quelle onde spaventose. In quella barca erano almeno 40 persone e il viaggio sembrava sempre più pericoloso. Ma alla fine, lui insieme alla sua famiglia, riuscirono ad arrivare in Grecia e sono stati aiutati da persone gentili che li hanno portati in un posto più sicuro dove Abed ha potuto cominciare una vita migliore, incontrando nuovi amici e continuando il suo sogno di stare bene insieme alla sua famiglia.",
+        "Aisha era una bambina solare e gentile di dieci anni. Viveva insieme alla sua famiglia in Siria, dove la guerra le tolse ogni possibilità per studiare e continuare il suo sogno di diventare un’ottima studentessa. I suoi genitori decisero di portarla in un nuovo paese più sicuro dove potevano coltivare sogni migliori: l’Italia.<br><br>Questo viaggio però nascondeva molte insidie e pericoli davanti a loro. Partirono per il Libano, dove rimasero per qualche tempo in condizioni difficili, ma la famiglia non cessava di sognare le alte montagne e i cieli blu.<br><br>Il viaggio proseguì in Turchia, dove salirono su un vecchio autobus sgangherato e viaggiarono lungo le tortuose strade montanare per raggiungere la costa. In queste condizioni difficili, Aisha incontrò un altro bambino alla ricerca di salvezza, si chiamava Omar e anche lui era in viaggio per l’Italia. Da quel momento, i due si incoraggiavano a vicenda condividendo i propri sogni.<br><br>Una volta arrivati lungo la costa turca, trovarono una barca piena di rifugiati come loro, dove Aisha insieme alla sua famiglia e Omar vennero fatti imbarcare sulla barca pronta a partire per l’Italia. La tratta però non fu così semplice ma bastò per arrivare su una piccola isola greca. La vita sull’isola era difficile, ma i bambini erano felici di giocare insieme.<br><br>Su quell’isola la famiglia colse l’occasione di un traghetto che li avrebbe portati in Italia. Il viaggio era più lungo di quanto avessero mai sperimentato prima e finalmente arrivarono in una piccola città portuale italiana. La famiglia di Aisha e Omar vennero portati in un centro di accoglienza per i rifugiati dove le persone presenti gli diedero del cibo e un riparo al caldo.<br><br>Nella loro nuova casa, Aisha e Omar cominciarono a frequentare la scuola della città e lì fecero molte amicizie. Impararono l’italiano e si divertirono raccontando le loro avventure ai loro compagni di classe."
+    ];
+}
+
+function allTextsChildrensTitle() {
+    return [
+        "Hoa",
+        "Abed",
+        "Aisha"
     ];
 }
 
@@ -265,41 +278,45 @@ function addTextsChildren() {
     let texts = allTextsChildrens();
     let positionTexts = [2];
     for (let i = 1; i < positionTexts.length; i++) {
-        frames[positionTexts[i]-1].insertAdjacentHTML("beforeend", "<p id='testo" + (i+1) + "' class='testiStoria'>" + texts[i] + "</p>");
+        frames[positionTexts[i]-1].insertAdjacentHTML("beforeend", "<p id='testoBambini" + (i+1) + "' class='testiStoriaBambini'>" + texts[i] + "</p>");
     }
 }
 
 function addTitleChildren() {
-    
+    let frames = document.getElementById('insiemeFramesBambini').querySelectorAll('.frameBambini');
+    let texts = allTextsChildrensTitle();
+    let textsContent = allTextsChildrens();
+    let positionTexts = [8, 13, 17];
+    for (let i = 0; i < positionTexts.length; i++) {
+        frames[positionTexts[i]-1].insertAdjacentHTML("beforeend", "<div class='containerStorieBambini' id='containerStory"+(i+1)+" '><h3 class='storia' id='storia"+(i+1)+"'>Storia "+(i+1)+"</h3><h1 class='title' id='title"+(i+2)+"'>" + texts[i] + "</h1><p id='testoBambini" + (i+2) + "' class='testiStoria'>" + textsContent[i+1] + "</p></div>");
+    }
 }
+
 function addAnimationTextChildren() {
     let frameBambini2 = document.getElementById('frameBambini2');
     frameBambini2.insertAdjacentHTML("beforeend", "<div id='textContainerAnimation1'><p id='testoBambini1' class='testiStoria'>" + allTextsChildrens()[0] + "</p></div><div id='textContainerAnimation2'></div>");
 }
 
 function animationTextChildren() {
-    let textContainerAnimation1 = document.getElementById('textContainerAnimation1');
-    let textContainerAnimation2 = document.getElementById('textContainerAnimation2');
-    let textContainerAnimation1Bounding = textContainerAnimation1.getBoundingClientRect();
-    let textContainerAnimation2Bounding = textContainerAnimation2.getBoundingClientRect();
-    let testo = document.getElementById('testoBambini1');
-    
+    if (document.getElementById('textContainerAnimation1') != null) {
+        let textContainerAnimation1 = document.getElementById('textContainerAnimation1');
+        let textContainerAnimation2 = document.getElementById('textContainerAnimation2');
+        let textContainerAnimation1Bounding = textContainerAnimation1.getBoundingClientRect();
+        let textContainerAnimation2Bounding = textContainerAnimation2.getBoundingClientRect();
+        let testo = document.getElementById('testoBambini1');
 
-    if(textContainerAnimation1Bounding.top + textContainerAnimation1.offsetHeight/2 > window.innerHeight/2) {
-        testo.style.position = "relative";
-        textContainerAnimation1.appendChild(testo);
-    } else {
-        if(textContainerAnimation2Bounding.top + textContainerAnimation2.offsetHeight/2 < window.innerHeight/2) {
+        if (textContainerAnimation1Bounding.top + textContainerAnimation1.offsetHeight / 2 > window.innerHeight / 2) {
             testo.style.position = "relative";
-            textContainerAnimation2.appendChild(testo);
+            textContainerAnimation1.appendChild(testo);
         } else {
-            testo.style.position = "fixed";
-            testo.style.top = "50%";
-            testo.style.transform = "translate(-50%, -50%)";
+            if (textContainerAnimation2Bounding.top + textContainerAnimation2.offsetHeight / 2 < window.innerHeight / 2) {
+                testo.style.position = "relative";
+                textContainerAnimation2.appendChild(testo);
+            } else {
+                testo.style.position = "fixed";
+                testo.style.top = "50%";
+                testo.style.transform = "translate(-50%, -50%)";
+            }
         }
     }
-        
-
-
-
 }
