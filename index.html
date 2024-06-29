@@ -7,6 +7,8 @@
     <title>My Web Design Project</title>
     <link rel="stylesheet" href="styles.css">
 
+    <script type="module" src="script.js"></script>
+    <script type="text/javascript" src="modules/jquery.min.js"></script>
 </head>
 
 <body>
@@ -74,12 +76,28 @@
         </menu>
     </div>
 
-    <script type="module" src="script.js"></script>
 
-    <script src="modules/jquery.min.js"></script>
     <script type="text/javascript">
-        $('body').append('<div style="" id="loadingDiv"><div class="loading"><img id="loadingImage" src="images/spinner_giallo.gif" /><h3 id="loadingText">Caricamento...</h3></div></div>');
+        $('body').append('<div style="" id="loadingDiv"><div class="loading"><img id="loadingBird" src="" /><h3 id="loadingText">Caricamento...</h3></div></div>');
             $(window).on('load', function(){
+                var img1Path = 'images/loading/rondineGiu_.webp';
+                var img2Path = 'images/loading/rondineSu_.webp';
+                var imgElement = document.getElementById('loadingBird'); // Assume che ci sia un elemento <img> con id "loadingBird"
+
+                var images = [img1Path, img2Path];
+                var currentImageIndex = 0;
+
+                imgElement.src = images[currentImageIndex];
+                currentImageIndex = (currentImageIndex + 1) % images.length;
+
+                // Imposta l'intervallo per alternare le immagini ogni 3 secondi (3000 millisecondi)
+                const interId = setInterval(function () {
+                    imgElement.src = images[currentImageIndex];
+                    currentImageIndex = (currentImageIndex + 1) % images.length;
+                    if (document.readyState === 'complete') {
+                        clearInterval(interId);
+                    }
+                }, 300);
                 $('#loadingDiv').hide();
             });
             function removeLoader(){
