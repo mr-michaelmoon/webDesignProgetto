@@ -25,7 +25,6 @@ document.addEventListener('DOMContentLoaded', function () {
     var viewportHeight = window.innerHeight;
     var viewportWidth = window.innerWidth;
 
-    // homepage.style.width = window.screen.width + "px";
     banner.style.width = window.screen.width + "px";
     banner.style.height = homepage.offsetHeight / 1.5 + "px";
 
@@ -33,10 +32,6 @@ document.addEventListener('DOMContentLoaded', function () {
     createFramesBanner(insiemeFramesBanner);
     insertTextsFrame();
     menu.style.opacity = "0";
-
-
-    //se in verticale mette width dell'immagine homepage a auto 
-    // homepage.querySelector('img').style.width = viewportHeight > viewportWidth ? "auto" : "100%";
 
     bannerContainer.style.height = calcTotalWidthFrames() - viewportWidth + "px";
 
@@ -46,12 +41,16 @@ document.addEventListener('DOMContentLoaded', function () {
         birdAnimation(sittingBird, birdContainer, birdImgStory, viewportWidth);
 
         //richiama funzione onresize()
-        window.onresize();
         createFramesKids(insiemeFramesBambini);
         addTitleChildren();
         addTextsChildren();
         addAnimationTextChildren();
-        // addCredits();
+        addCredits();
+        window.onresize();
+        console.log(dissolvenza);
+        if(dissolvenza.getBoundingClientRect().top <= 0) {
+            banner.style.left = -bannerContainer.offsetHeight + "px";
+        }
     }
 
     //si attiva quando si modifica la dimensione della finestra
@@ -65,6 +64,7 @@ document.addEventListener('DOMContentLoaded', function () {
         homepage.style.width = insiemeFramesBanner.firstElementChild.offsetWidth + "px";
         sittingBirdContainer.style.width = insiemeFramesBanner.firstElementChild.offsetWidth + "px";
         sittingBirdEndContainer.style.width = insiemeFramesBanner.firstElementChild.offsetWidth + "px";
+        document.querySelectorAll('.frameBambini')[20].style.height = document.getElementById('containerFinale').offsetHeight + "px";
 
     }
 
@@ -255,7 +255,13 @@ function allTextsChildrens() {
         "Hoa era una bambina di nove anni che viveva in un villaggio vicino al fiume Lwalaba, nella Repubblica democratica del Congo. Amava pescare con suo nonno e sognava di diventare una grande esploratrice. Ma la vita nel suo villaggio divenne troppo difficile a causa di inondazioni e povertà. Così, la sua famiglia decise di partire per un lungo viaggio verso l'Europa, in cerca di una vita migliore.<br><br>Il viaggio iniziò con una lunga traversata del fiume su una piccola barca per arrivare fino alle sabbie del Marocco. Navigarono per giorni, affrontando forti correnti e pericolosi animali del fiume. Una volta raggiunta la terraferma, continuarono a piedi attraverso le infinite dune del deserto. Hoa doveva essere attenta a ogni passo, aiutando la sua famiglia a superare gli ostacoli lungo il percorso, ma era una bambina determinata e tutte queste insidie non l’hanno mai fermata.<br><br>Dopo settimane di cammino, raggiunsero la grande città del Dakar, dove riuscirono a salire su un treno merci. Il viaggio in treno fu lungo e scomodo, con poche soste e poco cibo. Finalmente raggiunsero il mar mediterraneo dove s’imbarcarono su una barca verso l'Europa. La traversata fu piena di difficoltà, con tempeste e onde alte che rendevano il viaggio molto pericoloso.<br><br>Quando finalmente arrivarono in Italia, Hoa insieme alla sua famiglia erano esausti ma felici di aver raggiunto la terraferma siciliana, dove qui trovarono persone gentili e buone pronte a dare tutto il loro sostegno. In Italia, Hoa trovò una nuova scuola dove poté continuare a studiare e avere nuove speranze per il proprio futuro. Ogni giorno che passava scopriva nuovi amici e nuove avventure, sapendo che, nonostante le difficoltà, aveva trovato un posto sicuro dove crescere felice.",
         "Un bambino di nome Abed viveva insieme alla sua famiglia afghana in Iran. Purtroppo non possedevano i documenti per avere gli stessi diritti dei cittadini iraniani e questa mancanza li portò ad andare via. Decisero quindi di partire per l’Europa nella speranza di una vita migliore.<br><br>Il viaggio era pericoloso e pieno d’incertezze, ma Abed era pronto ad affrontare ogni pericolo per la propria famiglia per un futuro migliore. Viaggiavano di notte su strade buie, scappando da ogni pericolo. Dopo giorni, arrivarono in un altro confine, la Turchia. In questo nuovo paese sono stati costretti a rimanere per mesi affrontando giorni interi con poco cibo e con le loro uniche cose portate nel viaggio. Ma in quelle notti, Abed sognava una casa sicura dove poteva andare a scuola e giocare con gli altri bambini.<br><br>Una volta aver superato il confine con la Turchia, ecco il mare. Ci vollero almeno quattro tentativi per affrontare quelle onde spaventose. In quella barca erano almeno 40 persone e il viaggio sembrava sempre più pericoloso. Ma alla fine, lui insieme alla sua famiglia, riuscirono ad arrivare in Grecia e sono stati aiutati da persone gentili che li hanno portati in un posto più sicuro dove Abed ha potuto cominciare una vita migliore, incontrando nuovi amici e continuando il suo sogno di stare bene insieme alla sua famiglia.",
         "Aisha era una bambina solare e gentile di dieci anni. Viveva insieme alla sua famiglia in Siria, dove la guerra le tolse ogni possibilità per studiare e continuare il suo sogno di diventare un’ottima studentessa. I suoi genitori decisero di portarla in un nuovo paese più sicuro dove potevano coltivare sogni migliori: l’Italia.<br><br>Questo viaggio però nascondeva molte insidie e pericoli davanti a loro. Partirono per il Libano, dove rimasero per qualche tempo in condizioni difficili, ma la famiglia non cessava di sognare le alte montagne e i cieli blu.<br><br>Il viaggio proseguì in Turchia, dove salirono su un vecchio autobus sgangherato e viaggiarono lungo le tortuose strade montanare per raggiungere la costa. In queste condizioni difficili, Aisha incontrò un altro bambino alla ricerca di salvezza, si chiamava Omar e anche lui era in viaggio per l’Italia. Da quel momento, i due si incoraggiavano a vicenda condividendo i propri sogni.<br><br>Una volta arrivati lungo la costa turca, trovarono una barca piena di rifugiati come loro, dove Aisha insieme alla sua famiglia e Omar vennero fatti imbarcare sulla barca pronta a partire per l’Italia. La tratta però non fu così semplice ma bastò per arrivare su una piccola isola greca. La vita sull’isola era difficile, ma i bambini erano felici di giocare insieme.<br><br>Su quell’isola la famiglia colse l’occasione di un traghetto che li avrebbe portati in Italia. Il viaggio era più lungo di quanto avessero mai sperimentato prima e finalmente arrivarono in una piccola città portuale italiana. La famiglia di Aisha e Omar vennero portati in un centro di accoglienza per i rifugiati dove le persone presenti gli diedero del cibo e un riparo al caldo.<br><br>Nella loro nuova casa, Aisha e Omar cominciarono a frequentare la scuola della città e lì fecero molte amicizie. Impararono l’italiano e si divertirono raccontando le loro avventure ai loro compagni di classe.",
-        "Noi possiamo fare la nostra parte per aiutare questi bambini e famiglie nel loro viaggio.<br><br>Donando a Save the Children, possiamo contribuire a rendere il mondo un posto migliore e più sicuro per tutti."
+        "Noi possiamo fare la nostra parte per aiutare questi bambini e famiglie nel loro viaggio.<br><br>Donando a Save the Children, possiamo contribuire a rendere il mondo un posto migliore e più sicuro per tutti.",
+        "Basato sul racconto \“Se fossimo come Rondine\” Di Federico Celia, Federica Miccoli, Ilaria Pagano, Zhiyi Wang",
+        "Federico Celia, Federica Miccoli, Ilaria Pagano, Zhiyi Wang, Lorenzo Mecca, Giulia Rebaudo, Alessio Scarpulla, Carlo Zecca",
+        "Federico Celia, Federica Miccoli, Ilaria Pagano, Zhiyi Wang",
+        "Lorenzo Mecca, Giulia Rebaudo, Alessio Scarpulla, Carlo Zecca",
+        "Gaia Viriglio",
+        "Corso magistrale Design Prodotto Evento Corso triennale Informatica Laboratorio di Web Design - Prof. Andrea Vian a.a. 2023/2024"
     ];
 }
 
@@ -297,8 +303,29 @@ function addTitleChildren() {
 function addCredits() {
     let frames = document.getElementById('insiemeFramesBambini').querySelectorAll('.frameBambini');
     let texts = allTextsChildrens();
-    frames[21].insertAdjacentHTML("beforeend", "<div id='containerFinale'><p id='testoFinale'>"+ texts[4]+"</p></div>");
-
+    frames[20].insertAdjacentHTML("beforeend", `
+        <div id='containerFinale'>
+            <p class='testoFinale'>${texts[4]}</p>
+            <a class='linkImages' href='https://www.savethechildren.it/'>
+                <img id='saveTheChildren' src='images/loghi/saveTheChildren.svg' alt='Save The Children'>
+            </a>
+            <div id='crediti'>
+                <h2>Crediti</h2>
+                <p class='testoFinale testoCrediti'>${texts[5]}</p>
+                <h2>Ideato da:</h2>
+                <p class='testoFinale testoCrediti'>${texts[6]}</p>
+                <h2>Designers:</h2>
+                <p class='testoFinale testoCrediti'>${texts[7]}</p>
+                <h2>Developers:</h2>
+                <p class='testoFinale testoCrediti'>${texts[8]}</p>
+                <h2>Illustratrice:</h2>
+                <p class='testoFinale testoCrediti'>${texts[9]}</p>
+                <p id='lastText' class='testoFinale testoCrediti'>${texts[10]}</p>
+                <a class='linkImages' href='https://unige.it'><img src='images/loghi/logoUnige.svg'></a>
+            </div>
+        </div>
+    `);
+    
 }
 
 function addAnimationTextChildren() {
