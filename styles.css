@@ -308,9 +308,9 @@ p {
     background: rgba(0,0,0,0.5);
     z-index: 99;
 }
-#loadingImage {
-    position:fixed;;
-    top: 30vh;
+#loadingBird {
+    position: fixed;
+    color: chocolate;
 }
 #loadingText {
     font-family: Rouli;

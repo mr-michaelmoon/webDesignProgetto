@@ -39,7 +39,6 @@ document.addEventListener('DOMContentLoaded', function () {
     window.onload = function () {
         menuAnimation(sittingBird.getBoundingClientRect().top, menu, viewportHeight);
         birdAnimation(sittingBird, birdContainer, birdImgStory, viewportWidth);
-
         //richiama funzione onresize()
         createFramesKids(insiemeFramesBambini);
         addTitleChildren();
