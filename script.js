@@ -97,7 +97,6 @@ document.addEventListener('DOMContentLoaded', function () {
             dissolvenza.style.opacity = Math.abs(dissolvenza.getBoundingClientRect().top) / (dissolvenza.offsetHeight - viewportHeight);
         }
         if(animazioneDissolvenzaBounding.bottom <= viewportHeight) {
-            console.log("ciao");
             
         }
 
@@ -128,8 +127,7 @@ function createFramesBanner(insiemeFramesBanner) {
 
 function createFramesKids(insiemeFramesBambini) {
     for (var i = 1; i <= numFramesBambini; i++) {
-        insiemeFramesBambini.innerHTML += "<div class='frameBambini no-caret' id='frameBambini"+ i +"'><img src='images/storiaBambini/16_9_Verticali/v" + i +".png'></div>";
-        
+        insiemeFramesBambini.innerHTML += "<div class='frameBambini no-caret' id='frameBambini"+ i +"'><img src='images/banner_children_story/v" + i +".png'></div>";
     }
 
 }
