@@ -3,6 +3,8 @@ const numFramesBambini = 22;
 let lastScrollTop = 0;
 var controllo = false;
 var firstTime = false;
+let isInCT1 = true;
+
 
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -47,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function () {
         window.onresize();
         createFramesKids(insiemeFramesBambini);
         addTextsChildren();
-        
+        addAnimationTextChildren();
     }
 
     //si attiva quando si modifica la dimensione della finestra
@@ -106,7 +108,8 @@ document.addEventListener('DOMContentLoaded', function () {
         sittingBirdEnd.style.opacity = controlloBird ? "1" : "0";
             
         menuAnimation(sittingBirdBounding.top, menu, viewportHeight);
-        horizontalScroll(bannerContainerBounding, banner, viewportHeight)
+        horizontalScroll(bannerContainerBounding, banner, viewportHeight);
+        animationTextChildren();
 
     });
 });
@@ -260,12 +263,43 @@ function addTexts(frames, texts) {
 function addTextsChildren() {
     let frames = document.getElementById('insiemeFramesBambini').querySelectorAll('.frameBambini');
     let texts = allTextsChildrens();
-    let positionTexts = [3];
-    for (let i = 0; i < positionTexts.length; i++) {
+    let positionTexts = [2];
+    for (let i = 1; i < positionTexts.length; i++) {
         frames[positionTexts[i]-1].insertAdjacentHTML("beforeend", "<p id='testo" + (i+1) + "' class='testiStoria'>" + texts[i] + "</p>");
     }
 }
 
 function addTitleChildren() {
     
+}
+function addAnimationTextChildren() {
+    let frameBambini2 = document.getElementById('frameBambini2');
+    frameBambini2.insertAdjacentHTML("beforeend", "<div id='textContainerAnimation1'><p id='testoBambini1' class='testiStoria'>" + allTextsChildrens()[0] + "</p></div><div id='textContainerAnimation2'></div>");
+}
+
+function animationTextChildren() {
+    let textContainerAnimation1 = document.getElementById('textContainerAnimation1');
+    let textContainerAnimation2 = document.getElementById('textContainerAnimation2');
+    let textContainerAnimation1Bounding = textContainerAnimation1.getBoundingClientRect();
+    let textContainerAnimation2Bounding = textContainerAnimation2.getBoundingClientRect();
+    let testo = document.getElementById('testoBambini1');
+    
+
+    if(textContainerAnimation1Bounding.top + textContainerAnimation1.offsetHeight/2 > window.innerHeight/2) {
+        testo.style.position = "relative";
+        textContainerAnimation1.appendChild(testo);
+    } else {
+        if(textContainerAnimation2Bounding.top + textContainerAnimation2.offsetHeight/2 < window.innerHeight/2) {
+            testo.style.position = "relative";
+            textContainerAnimation2.appendChild(testo);
+        } else {
+            testo.style.position = "fixed";
+            testo.style.top = "50%";
+            testo.style.transform = "translate(-50%, -50%)";
+        }
+    }
+        
+
+
+
 }

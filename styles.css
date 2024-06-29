@@ -420,9 +420,13 @@ z-index: 2;
 
     .frameBambini img {
         width: 100%;
+        height: 100%;
     }
 
-    #animazioneTesto {
+
+
+    #frameBambini2 {
+        height: 200vh;
     }
 
     .frameBambini .containerText {
@@ -433,9 +437,28 @@ z-index: 2;
         text-align: center;
         text-wrap: wrap;
         width: 70%;
-        min-height: 100%;
+        height: 25%;
         left: 50%;
+        padding: 6vh;
         transform: translateX(-50%);
+    }
+
+    #testoBambini1 {
+        top: 0%;
+    }
+
+    #textContainerAnimation1 {
+        height: 25%;
+        width: 100%;
+        top: 0;
+        position: absolute;
+    }
+
+    #textContainerAnimation2 {
+        height: 25%;
+        width: 100%;
+        bottom: 0;
+        position: absolute;
     }
 
 /* -----------------------------menu----------------------------- */
