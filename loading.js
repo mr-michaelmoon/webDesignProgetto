@@ -11,7 +11,7 @@ $(document).ready(function () {
 
 		if (document.readyState === 'complete')
 			clearInterval(intervId);
-	}, 300);
+	}, 600);
 });
 $(window).on('load', function(){
 	$('#loadingDiv').hide();
