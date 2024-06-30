@@ -4,11 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Web Design Project</title>
+    <title>Se fossimo come la rondine</title>
+	<link rel="icon" type="image/x-icon" href="images/favicon.ico">
     <link rel="stylesheet" href="styles.css">
 
+	<script src="modules/jquery.min.js"></script>
     <script type="module" src="script.js"></script>
-    <script type="text/javascript" src="modules/jquery.min.js"></script>
+	<script type="module" src="loading.js"></script>
 </head>
 
 <body>
@@ -16,38 +18,32 @@
         <img draggable="false" src="images/homepageNuovo.png">
     </div>
 
-    <div id="bannerContainer"> <!-- div per avere altezza uguale a lunghezza del banner per scroll orizzontale-->
-        
-        <div id="banner">
-            
-            <div id="insiemeFramesBanner">
-                <!-- i frame delle immagini vengono create con js -->    
-            </div>
+	<div id="bannerContainer"> <!-- div per avere altezza uguale a lunghezza del banner per scroll orizzontale-->
+		<div id="banner">
+			
+			<div id="insiemeFramesBanner"> <!-- frame creati con JavaScript --> </div>
 
-            
-            <div id="sittingBirdContainer" class="no-caret">
-                <img draggable="false" src="images/rondine/rondineSeduta.webp" class="birds" id="uccelloSeduto" alt="immagine della rondine seduta su un ramo">
-            </div>
+			<div id="sittingBirdContainer" class="no-caret">
+				<img draggable="false" src="images/rondine/rondineSeduta.webp" class="birds" id="uccelloSeduto" alt="Rondine seduta su un ramo">
+			</div>
 
-            <div id="sittingBirdEndContainer" class="no-caret">
-                <img draggable="false" src="images/rondine/rondineSeduta.webp" id="uccelloSedutoFine" class="birds" alt="immagine della rondine seduta su una casa">
-            </div>
+			<div id="sittingBirdEndContainer" class="no-caret">
+				<img draggable="false" src="images/rondine/rondineSeduta.webp" id="uccelloSedutoFine" class="birds" alt="Rondine seduta su una casa">
+			</div>
 
-        </div>
-        
-
-        <div id="birdContainer">
-            <img id="birdImgStory" draggable="false">
-        </div>
-    </div>
-
+		</div>
+		
+		<div id="birdContainer">
+			<img id="birdImgStory" draggable="false">
+		</div>
+	</div>
+    
     <div id="animazioneDissolvenza">
         <div id="dissolvenza"></div>
     </div>
     
-    <div id="insiemeFramesBambini">
-        
-    </div>
+    <div id="insiemeFramesBambini">  <!-- frame creati con JavaScript --> </div>
+
 
     <div id="menu">
         <menu>
@@ -75,32 +71,6 @@
             </ul>
         </menu>
     </div>
-
-
-    <script type="text/javascript">
-        $('body').append('<div style="" id="loadingDiv"><div class="loading"><img id="loadingBird" src="" /><h3 id="loadingText">Caricamento...</h3></div></div>');
-            $(document).ready(function () { 
-                var images = ['images/loading/rondineGiu_.webp', 'images/loading/rondineSu_.webp'];
-                var currentIndex = 0;
-
-                // Imposta l'intervallo per alternare le immagini ogni 3 secondi (3000 millisecondi)
-                const intervId = setInterval(function () {
-                    $('#loadingBird').attr('src', images[currentIndex]);
-                    currentIndex = (currentIndex + 1) % images.length;
-
-                    if (document.readyState === 'complete')
-                        clearInterval(intervId);
-                }, 300);
-            });
-            $(window).on('load', function(){
-                $('#loadingDiv').hide();
-            });
-            function removeLoader(){
-                $("#loadingDiv").fadeOut(500, function() {
-                // fadeOut complete. Remove the loading div
-                $("#loadingDiv").remove(); //makes page more lightweight 
-            });
-            }
-    </script>
+	
 </body>
 </html>
