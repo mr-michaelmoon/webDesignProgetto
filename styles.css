@@ -40,6 +40,7 @@ p {
     min-width: 100vw;
     margin-bottom: -3px;
     position: relative;
+    -ms-overflow-style: none;
     
 }
 
@@ -74,7 +75,6 @@ p {
 
 #bannerContainer {
     position: relative;
-
 }
 
 #banner {
@@ -419,7 +419,7 @@ z-index: 2;
     }
 
     .frameBambini:last-child {
-        height: 30vh;
+        height: 40vh;
     }
 
     .frameBambini img {
@@ -429,9 +429,9 @@ z-index: 2;
 
 
 
-    #frameBambini2 {
+    /* #frameBambini2 {
         height: 200vh;
-    }
+    } */
 
     .frameBambini .containerText {
         text-align: center;
@@ -486,7 +486,7 @@ z-index: 2;
     #textContainerAnimation2 {
         height: 25%;
         width: 100%;
-        bottom: 0;
+        bottom: -250%;
         position: absolute;
     }
 
@@ -549,10 +549,14 @@ z-index: 2;
     .linkImages {
         display: flex;
         justify-content: center;
-        width: 50%;
+        width: 15%;
         position: relative;
         left: 50%;
         transform: translateX(-50%);
+    }
+
+    #saveTheChildrenLinkImg {
+        width: 40%;
     }
 
     #lastText {
