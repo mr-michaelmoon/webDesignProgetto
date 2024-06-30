@@ -25,18 +25,21 @@ document.addEventListener('DOMContentLoaded', function () {
     var viewportHeight = window.innerHeight;
     var viewportWidth = window.innerWidth;
 
-    // homepage.style.width = window.screen.width + "px";
     banner.style.width = window.screen.width + "px";
     banner.style.height = homepage.offsetHeight / 1.5 + "px";
 
     // creazione frame delle immagini del banner 
     createFramesBanner(insiemeFramesBanner);
     insertTextsFrame();
+
+
+    document.getElementById('linkBird').addEventListener('click', function() {
+            document.getElementById('banner').style.left = "0";
+            document.getElementById('banner').style.position = "fixed";        
+    });
+
+
     menu.style.opacity = "0";
-
-
-    //se in verticale mette width dell'immagine homepage a auto 
-    // homepage.querySelector('img').style.width = viewportHeight > viewportWidth ? "auto" : "100%";
 
     bannerContainer.style.height = calcTotalWidthFrames() - viewportWidth + "px";
 
@@ -44,13 +47,18 @@ document.addEventListener('DOMContentLoaded', function () {
     window.onload = function () {
         menuAnimation(sittingBird.getBoundingClientRect().top, menu, viewportHeight);
         birdAnimation(sittingBird, birdContainer, birdImgStory, viewportWidth);
-        //richiama funzione onresize()
-        window.onresize();
         createFramesKids(insiemeFramesBambini);
         addTitleChildren();
         addTextsChildren();
         addAnimationTextChildren();
-        // addCredits();
+        addCredits();
+        //richiama funzione onresize()
+        window.onresize();
+        
+        if(dissolvenza.getBoundingClientRect().top <= 0) {
+            banner.style.left = -bannerContainer.offsetHeight + "px";
+        }
+
     }
 
     //si attiva quando si modifica la dimensione della finestra
@@ -58,13 +66,13 @@ document.addEventListener('DOMContentLoaded', function () {
         viewportWidth = window.innerWidth;
         var vh = Math.abs(viewportHeight - window.innerHeight); // calcolo differenza tra viewportHeight vecchio e quello nuovo
         bannerContainer.style.height = calcTotalWidthFrames() - viewportWidth + vh + "px";
+        homepage.style.width = insiemeFramesBanner.firstElementChild.offsetWidth + "px";
         banner.style.width = bannerContainer.offsetHeight + viewportWidth + "px";
         banner.style.height = homepage.offsetHeight / 1.5 + "px";
-        birdImgStory.style.width = (3/4)*sittingBird.offsetWidth + "px";
-        homepage.style.width = insiemeFramesBanner.firstElementChild.offsetWidth + "px";
         sittingBirdContainer.style.width = insiemeFramesBanner.firstElementChild.offsetWidth + "px";
         sittingBirdEndContainer.style.width = insiemeFramesBanner.firstElementChild.offsetWidth + "px";
-
+        birdImgStory.style.width = (3/4)*sittingBird.offsetWidth + "px";
+        document.querySelectorAll('.frameBambini')[20].style.height = document.getElementById('containerFinale').offsetHeight + "px";
     }
 
     document.addEventListener('scroll', function (e) {
@@ -223,38 +231,44 @@ function calcTotalWidthFrames() {
 //restituisce array con i testi della storia
 function allTextsBanner() {
     return [
-        "Una rondine viveva felice in un piccolo nido in Kenya. <br>Ogni giorno, volava libera sotto il cielo azzurro, <br>sorvolando le verdi savane e i fiumi scintillanti. <br>Ma con l\'arrivo dell\'autunno, la rondine sent<span class='charSpecial'>ì</span> <br>un forte desiderio di partire per un lungo viaggio, <br>un viaggio che l\'avrebbe portata fino all\'Italia.",
-        "Un mattino presto, la rondine spieg<span class='charSpecial'>ò</span> le ali <br>e inizi<span class='charSpecial'>ò</span> il suo volo verso nord.",
+        "Rondine viveva felice in un piccolo nido in Kenya. <br>Ogni giorno, volava libera sotto il cielo azzurro, <br>sorvolando le verdi savane e i fiumi scintillanti. <br>Ma con l\'arrivo dell\'autunno, Rondine sent<span class='charSpecial'>ì</span> <br>un forte desiderio di partire per un lungo viaggio, <br>un viaggio che l\'avrebbe portata fino all\'Italia.",
+        "Un mattino presto, Rondine spieg<span class='charSpecial'>ò</span> le ali <br>e inizi<span class='charSpecial'>ò</span> il suo volo verso nord.",
         "Il primo tratto del viaggio fu <br>piacevole e pieno di avventure,<br>ma presto arriv<span class='charSpecial'>ò</span> davanti a<br>una sfida imponente…",
         "…Il deserto del Sahara.",
         "La vastità del deserto era infinita e il sole bruciava alto nel cielo.",
         "\"Oh, cara rondine spero che tu abbia abbastanza <br>forza per attraversare questo deserto spietato.\"",
-        "La rondine vol<span class='charSpecial'>ò</span> senza sosta, <br>sentendo il calore ardente sotto le sue ali.<br>La sabbia sembrava non finire mai,<br>ma la piccola rondine non si arrese.",
+        "Rondine vol<span class='charSpecial'>ò</span> senza sosta, <br>sentendo il calore ardente sotto le sue ali.<br>La sabbia sembrava non finire mai,<br>ma la piccola Rondine non si arrese.",
         "Beveva dalle rare oasi che incontrava <br>e riposava sugli arbusti sparsi qua e là.",
         "Dopo giorni e giorni di volo, finalmente vide all'orizzonte qualcosa di diverso!",
         "Il blu scintillante del Mar Mediterraneo.",
         "<span class='charSpecial'>\“</span>Ben fatto! Hai superato il Sahara! Ora ti aspetta un'altra sfida:<br>lo Stretto di Gibilterra.<span class='charSpecial'>\”</span>",
-        "Lo Stretto di Gibilterra era un passaggio stretto e ventoso <br>che separava l'Africa dall'Europa. Le correnti erano forti <br>e la rondine dovette lottare contro i venti impetuosi. <br>Attraversare lo Stretto era una delle parti pi<span class='charSpecial'>ù</span> difficili del suo viaggio, <br>ma la vista della terra dall<span class='charSpecial'>’</span>altra parte le dava la forza necessaria.",
+        "Lo Stretto di Gibilterra era un passaggio stretto e ventoso <br>che separava l'Africa dall<span class='charSpecial'>'</span>Europa. Le correnti erano forti <br>e Rondine dovette lottare contro i venti impetuosi. <br>Attraversare lo Stretto era una delle parti pi<span class='charSpecial'>ù</span> difficili del suo viaggio, <br>ma la vista della terra dall<span class='charSpecial'>’</span>altra parte le dava la forza necessaria.",
         "Con grande determinazione, <br>raggiunse finalmente le coste spagnole.",
-        "Dalla Spagna, la rondine vol<span class='charSpecial'>ò</span> verso i maestosi Monti Pirenei. Qui, i boschi erano <br>fitti e verdi, pieni di alberi alti e profumati. Era un luogo meraviglioso, ma il volo <br>tra le montagne non era semplice. Le correnti d'aria potevano <br>essere imprevedibili,<br>e a volte il cielo si copriva di nubi minacciose.",
+        "Dalla Spagna, Rondine vol<span class='charSpecial'>ò</span> verso i maestosi Monti Pirenei. Qui, i boschi erano <br>fitti e verdi, pieni di alberi alti e profumati. Era un luogo meraviglioso, ma il volo <br>tra le montagne non era semplice. Le correnti d'aria potevano <br>essere imprevedibili,<br>e a volte il cielo si copriva di nubi minacciose.",
         "<span class='charSpecial'>\“</span>Stai attenta, piccola rondine, <br>queste vette che separano <br>la Spagna dalla Francia <br>possono essere pericolose.<span class='charSpecial'>\”</span>",
         "Ma lei era una rondine coraggiosa. <br>Sapeva quando riposare sui rami <br>e quando riprendere il volo.",
         "Attravers<span class='charSpecial'>ò</span> i Pirenei con grazia e forza, <br>giungendo finalmente dall<span class='charSpecial'>’</span>altra parte.",
         "Incontr<span class='charSpecial'>ò</span> altri uccelli migratori lungo il viaggio <br>e insieme volarono facendosi compagnia gli uni all<span class='charSpecial'>’</span>altra.",
         "Finalmente, dopo molte settimane di viaggio, arriv<span class='charSpecial'>ò</span> in Italia.",
-        "La rondine trov<span class='charSpecial'>ò</span> un bel paesino vicino a un lago, <br>dove decise di costruire il suo nuovo nido. <br>Qui, i cieli erano azzurri e l'aria fresca. <br>Ogni giorno, si nutriva di insetti e cinguettava felice.",
+        "Rondine trov<span class='charSpecial'>ò</span> un bel paesino vicino a un lago, <br>dove decise di costruire il suo nuovo nido. <br>Qui, i cieli erano azzurri e l'aria fresca. <br>Ogni giorno, si nutriva di insetti e cinguettava felice.",
         "<span class='charSpecial'>\“</span>La rondine ha affrontato tanti pericoli e ha attraversato luoghi magnifici.<br>Ora è giunta sana e salva in Italia, pronta per una nuova avventura. <br>E chissà, forse un giorno volerà di nuovo verso il Kenya, <br>portando con sé i ricordi di questo meraviglioso viaggio.<span class='charSpecial'>\”</span>",
-        "E cos<span class='charSpecial'>ì</span> termina il viaggio della rondine coraggiosa. <br>Il suo spirito avventuroso continuerà a ispirare <br>tutti coloro che amano esplorare il mondo."
+        "E cos<span class='charSpecial'>ì</span> termina il viaggio di Rondine coraggiosa. <br>Il suo spirito avventuroso continuerà a ispirare <br>tutti coloro che amano esplorare il mondo."
     ];
 }
 
 function allTextsChildrens() {
     return [
-        "Le rondini possono volare dall\'Africa all\'Europa senza problemi, ma per noi umani attraversare i confini pu<span class='charSpecial'>ò</span> essere molto pi<span class='charSpecial'>ù</span> complicato.<br><br> Le rondini possono volare lontano senza bisogno di permessi o documenti. Attraverso tanti paesi diversi e nessuno le ferma. <br><br>Per noi umani, viaggiare da un paese all\’altro richiede spesso documenti speciali chiamati \“visti\” e dobbiamo passare attraverso controlli ai confini. <br><br>Alcuni bambini e adulti provenienti da molti paesi del mondo non possono spostarsi liberamente come le rondini perché ci sono delle regole diverse per ogni paese.",
-        "Hoa era una bambina di nove anni che viveva in un villaggio vicino al fiume Lwalaba, nella Repubblica democratica del Congo. Amava pescare con suo nonno e sognava di diventare una grande esploratrice. Ma la vita nel suo villaggio divenne troppo difficile a causa di inondazioni e povertà. Così, la sua famiglia decise di partire per un lungo viaggio verso l'Europa, in cerca di una vita migliore.<br><br>Il viaggio iniziò con una lunga traversata del fiume su una piccola barca per arrivare fino alle sabbie del Marocco. Navigarono per giorni, affrontando forti correnti e pericolosi animali del fiume. Una volta raggiunta la terraferma, continuarono a piedi attraverso le infinite dune del deserto. Hoa doveva essere attenta a ogni passo, aiutando la sua famiglia a superare gli ostacoli lungo il percorso, ma era una bambina determinata e tutte queste insidie non l’hanno mai fermata.<br><br>Dopo settimane di cammino, raggiunsero la grande città del Dakar, dove riuscirono a salire su un treno merci. Il viaggio in treno fu lungo e scomodo, con poche soste e poco cibo. Finalmente raggiunsero il mar mediterraneo dove s’imbarcarono su una barca verso l'Europa. La traversata fu piena di difficoltà, con tempeste e onde alte che rendevano il viaggio molto pericoloso.<br><br>Quando finalmente arrivarono in Italia, Hoa insieme alla sua famiglia erano esausti ma felici di aver raggiunto la terraferma siciliana, dove qui trovarono persone gentili e buone pronte a dare tutto il loro sostegno. In Italia, Hoa trovò una nuova scuola dove poté continuare a studiare e avere nuove speranze per il proprio futuro. Ogni giorno che passava scopriva nuovi amici e nuove avventure, sapendo che, nonostante le difficoltà, aveva trovato un posto sicuro dove crescere felice.",
-        "Un bambino di nome Abed viveva insieme alla sua famiglia afghana in Iran. Purtroppo non possedevano i documenti per avere gli stessi diritti dei cittadini iraniani e questa mancanza li portò ad andare via. Decisero quindi di partire per l’Europa nella speranza di una vita migliore.<br><br>Il viaggio era pericoloso e pieno d’incertezze, ma Abed era pronto ad affrontare ogni pericolo per la propria famiglia per un futuro migliore. Viaggiavano di notte su strade buie, scappando da ogni pericolo. Dopo giorni, arrivarono in un altro confine, la Turchia. In questo nuovo paese sono stati costretti a rimanere per mesi affrontando giorni interi con poco cibo e con le loro uniche cose portate nel viaggio. Ma in quelle notti, Abed sognava una casa sicura dove poteva andare a scuola e giocare con gli altri bambini.<br><br>Una volta aver superato il confine con la Turchia, ecco il mare. Ci vollero almeno quattro tentativi per affrontare quelle onde spaventose. In quella barca erano almeno 40 persone e il viaggio sembrava sempre più pericoloso. Ma alla fine, lui insieme alla sua famiglia, riuscirono ad arrivare in Grecia e sono stati aiutati da persone gentili che li hanno portati in un posto più sicuro dove Abed ha potuto cominciare una vita migliore, incontrando nuovi amici e continuando il suo sogno di stare bene insieme alla sua famiglia.",
-        "Aisha era una bambina solare e gentile di dieci anni. Viveva insieme alla sua famiglia in Siria, dove la guerra le tolse ogni possibilità per studiare e continuare il suo sogno di diventare un’ottima studentessa. I suoi genitori decisero di portarla in un nuovo paese più sicuro dove potevano coltivare sogni migliori: l’Italia.<br><br>Questo viaggio però nascondeva molte insidie e pericoli davanti a loro. Partirono per il Libano, dove rimasero per qualche tempo in condizioni difficili, ma la famiglia non cessava di sognare le alte montagne e i cieli blu.<br><br>Il viaggio proseguì in Turchia, dove salirono su un vecchio autobus sgangherato e viaggiarono lungo le tortuose strade montanare per raggiungere la costa. In queste condizioni difficili, Aisha incontrò un altro bambino alla ricerca di salvezza, si chiamava Omar e anche lui era in viaggio per l’Italia. Da quel momento, i due si incoraggiavano a vicenda condividendo i propri sogni.<br><br>Una volta arrivati lungo la costa turca, trovarono una barca piena di rifugiati come loro, dove Aisha insieme alla sua famiglia e Omar vennero fatti imbarcare sulla barca pronta a partire per l’Italia. La tratta però non fu così semplice ma bastò per arrivare su una piccola isola greca. La vita sull’isola era difficile, ma i bambini erano felici di giocare insieme.<br><br>Su quell’isola la famiglia colse l’occasione di un traghetto che li avrebbe portati in Italia. Il viaggio era più lungo di quanto avessero mai sperimentato prima e finalmente arrivarono in una piccola città portuale italiana. La famiglia di Aisha e Omar vennero portati in un centro di accoglienza per i rifugiati dove le persone presenti gli diedero del cibo e un riparo al caldo.<br><br>Nella loro nuova casa, Aisha e Omar cominciarono a frequentare la scuola della città e lì fecero molte amicizie. Impararono l’italiano e si divertirono raccontando le loro avventure ai loro compagni di classe.",
-        "Noi possiamo fare la nostra parte per aiutare questi bambini e famiglie nel loro viaggio.<br><br>Donando a Save the Children, possiamo contribuire a rendere il mondo un posto migliore e più sicuro per tutti."
+        "Le rondini possono volare dall\'Africa all\'Europa senza problemi, ma per noi umani attraversare i confini pu<span class='charSpecial'>ò</span> essere molto pi<span class='charSpecial'>ù</span> complicato.<br><br> Le rondini possono volare lontano senza bisogno di permessi o documenti. Attraverso tanti paesi diversi e nessuno le ferma. <br><br>Per noi umani, viaggiare da un paese all<span class='charSpecial'>’</span>altro richiede spesso documenti speciali chiamati \“visti\” e dobbiamo passare attraverso controlli ai confini. <br><br>Alcuni bambini e adulti provenienti da molti paesi del mondo non possono spostarsi liberamente come le rondini perché ci sono delle regole diverse per ogni paese.",
+        "Hoa era una bambina di nove anni che viveva in un villaggio vicino al fiume Lwalaba, nella Repubblica democratica del Congo. Amava pescare con suo nonno e sognava di diventare una grande esploratrice. Ma la vita nel suo villaggio divenne troppo difficile a causa di inondazioni e povertà. Cos<span class='charSpecial'>ì</span>, la sua famiglia decise di partire per un lungo viaggio verso l'Europa, in cerca di una vita migliore.<br><br>Il viaggio inizi<span class='charSpecial'>ò</span> con una lunga traversata del fiume su una piccola barca per arrivare fino alle sabbie del Marocco. Navigarono per giorni, affrontando forti correnti e pericolosi animali del fiume. Una volta raggiunta la terraferma, continuarono a piedi attraverso le infinite dune del deserto. Hoa doveva essere attenta a ogni passo, aiutando la sua famiglia a superare gli ostacoli lungo il percorso, ma era una bambina determinata e tutte queste insidie non l<span class='charSpecial'>’</span>hanno mai fermata.<br><br>Dopo settimane di cammino, raggiunsero la grande città del Dakar, dove riuscirono a salire su un treno merci. Il viaggio in treno fu lungo e scomodo, con poche soste e poco cibo. Finalmente raggiunsero il mar mediterraneo dove s<span class='charSpecial'>’</span>imbarcarono su una barca verso l'Europa. La traversata fu piena di difficoltà, con tempeste e onde alte che rendevano il viaggio molto pericoloso.<br><br>Quando finalmente arrivarono in Italia, Hoa insieme alla sua famiglia erano esausti ma felici di aver raggiunto la terraferma siciliana, dove qui trovarono persone gentili e buone pronte a dare tutto il loro sostegno. In Italia, Hoa trov<span class='charSpecial'>ò</span> una nuova scuola dove poté continuare a studiare e avere nuove speranze per il proprio futuro. Ogni giorno che passava scopriva nuovi amici e nuove avventure, sapendo che, nonostante le difficoltà, aveva trovato un posto sicuro dove crescere felice.",
+        "Un bambino di nome Abed viveva insieme alla sua famiglia afghana in Iran. Purtroppo non possedevano i documenti per avere gli stessi diritti dei cittadini iraniani e questa mancanza li port<span class='charSpecial'>ò</span> ad andare via. Decisero quindi di partire per l<span class='charSpecial'>’</span>Europa nella speranza di una vita migliore.<br><br>Il viaggio era pericoloso e pieno d<span class='charSpecial'>’</span>incertezze, ma Abed era pronto ad affrontare ogni pericolo per la propria famiglia per un futuro migliore. Viaggiavano di notte su strade buie, scappando da ogni pericolo. Dopo giorni, arrivarono in un altro confine, la Turchia. In questo nuovo paese sono stati costretti a rimanere per mesi affrontando giorni interi con poco cibo e con le loro uniche cose portate nel viaggio. Ma in quelle notti, Abed sognava una casa sicura dove poteva andare a scuola e giocare con gli altri bambini.<br><br>Una volta aver superato il confine con la Turchia, ecco il mare. Ci vollero almeno quattro tentativi per affrontare quelle onde spaventose. In quella barca erano almeno 40 persone e il viaggio sembrava sempre pi<span class='charSpecial'>ù</span> pericoloso. Ma alla fine, lui insieme alla sua famiglia, riuscirono ad arrivare in Grecia e sono stati aiutati da persone gentili che li hanno portati in un posto pi<span class='charSpecial'>ù</span> sicuro dove Abed ha potuto cominciare una vita migliore, incontrando nuovi amici e continuando il suo sogno di stare bene insieme alla sua famiglia.",
+        "Aisha era una bambina solare e gentile di dieci anni. Viveva insieme alla sua famiglia in Siria, dove la guerra le tolse ogni possibilità per studiare e continuare il suo sogno di diventare un’ottima studentessa. I suoi genitori decisero di portarla in un nuovo paese pi<span class='charSpecial'>ù</span> sicuro dove potevano coltivare sogni migliori: l<span class='charSpecial'>’</span>Italia.<br><br>Questo viaggio per<span class='charSpecial'>ò</span> nascondeva molte insidie e pericoli davanti a loro. Partirono per il Libano, dove rimasero per qualche tempo in condizioni difficili, ma la famiglia non cessava di sognare le alte montagne e i cieli blu.<br><br>Il viaggio prosegu<span class='charSpecial'>ì</span> in Turchia, dove salirono su un vecchio autobus sgangherato e viaggiarono lungo le tortuose strade montanare per raggiungere la costa. In queste condizioni difficili, Aisha incontr<span class='charSpecial'>ò</span> un altro bambino alla ricerca di salvezza, si chiamava Omar e anche lui era in viaggio per l<span class='charSpecial'>’</span>Italia. Da quel momento, i due si incoraggiavano a vicenda condividendo i propri sogni.<br><br>Una volta arrivati lungo la costa turca, trovarono una barca piena di rifugiati come loro, dove Aisha insieme alla sua famiglia e Omar vennero fatti imbarcare sulla barca pronta a partire per l<span class='charSpecial'>’</span>Italia. La tratta per<span class='charSpecial'>ò</span> non fu cos<span class='charSpecial'>ì</span> semplice ma bast<span class='charSpecial'>ò</span> per arrivare su una piccola isola greca. La vita sull<span class='charSpecial'>’</span>isola era difficile, ma i bambini erano felici di giocare insieme.<br><br>Su quell<span class='charSpecial'>’</span>isola la famiglia colse l<span class='charSpecial'>’</span>occasione di un traghetto che li avrebbe portati in Italia. Il viaggio era pi<span class='charSpecial'>ù</span> lungo di quanto avessero mai sperimentato prima e finalmente arrivarono in una piccola città portuale italiana. La famiglia di Aisha e Omar vennero portati in un centro di accoglienza per i rifugiati dove le persone presenti gli diedero del cibo e un riparo al caldo.<br><br>Nella loro nuova casa, Aisha e Omar cominciarono a frequentare la scuola della città e l<span class='charSpecial'>ì</span> fecero molte amicizie. Impararono l<span class='charSpecial'>’</span>italiano e si divertirono raccontando le loro avventure ai loro compagni di classe.",
+        "Noi possiamo fare la nostra parte per aiutare questi bambini e famiglie nel loro viaggio.<br><br>Donando a <a class='linkText' href='https://www.savethechildren.it.html#crediti'>Save the Children</a>, possiamo contribuire a rendere il mondo un posto migliore e pi<span class='charSpecial'>ù</span> sicuro per tutti.",
+        "Basato sul racconto <span class='charSpecial'>“</span>Se fossimo come Rondine<span class='charSpecial'>“</span> Di Federico Celia, Federica Miccoli, Ilaria Pagano, Zhiyi Wang",
+        "Federico Celia, Federica Miccoli, Ilaria Pagano, Zhiyi Wang, Lorenzo Mecca, Giulia Rebaudo, Alessio Scarpulla, Carlo Zecca",
+        "Federico Celia, Federica Miccoli, Ilaria Pagano, Zhiyi Wang",
+        "Lorenzo Mecca, Giulia Rebaudo, Alessio Scarpulla, Carlo Zecca",
+        "Gaia Viriglio",
+        "Corso magistrale Design Prodotto Evento Corso triennale Informatica Laboratorio di Web Design - Prof. Andrea Vian a.a. 2023/2024"
     ];
 }
 
@@ -289,15 +303,37 @@ function addTitleChildren() {
     let textsContent = allTextsChildrens();
     let positionTexts = [8, 13, 17];
     for (let i = 0; i < positionTexts.length; i++) {
-        frames[positionTexts[i]-1].insertAdjacentHTML("beforeend", "<div class='containerStorieBambini' id='containerStory"+(i+1)+" '><h3 class='storia' id='storia"+(i+1)+"'>Storia "+(i+1)+"</h3><h1 class='title' id='title"+(i+2)+"'>" + texts[i] + "</h1><p id='testoBambini" + (i+2) + "' class='testiStoriaBambini'>" + textsContent[i+1] + "</p></div>");
+        frames[positionTexts[i]-1].insertAdjacentHTML("beforeend", "<div class='containerStorieBambini' id='containerStory"+(i+1)+"'><h3 class='storia' id='storia"+(i+1)+"'>Storia "+(i+1)+"</h3><h1 class='title' id='title"+(i+2)+"'>" + texts[i] + "</h1><p id='testoBambini" + (i+2) + "' class='testiStoriaBambini'>" + textsContent[i+1] + "</p></div>");
+        document.querySelector('menu').querySelectorAll('a')[i+1].setAttribute("href", '#containerStory'+(i+1));
     }
 }
 
 function addCredits() {
     let frames = document.getElementById('insiemeFramesBambini').querySelectorAll('.frameBambini');
     let texts = allTextsChildrens();
-    frames[21].insertAdjacentHTML("beforeend", "<div id='containerFinale'><p id='testoFinale'>"+ texts[4]+"</p></div>");
-
+    frames[20].insertAdjacentHTML("beforeend", `
+        <div id='containerFinale'>
+            <p class='testoFinale'>${texts[4]}</p>
+            <a class='linkImages' id='saveTheChildrenLinkImg' href='https://www.savethechildren.it.html#crediti'>
+                <img id='saveTheChildren' src='images/loghi/saveTheChildren.svg' alt='Save The Children'>
+            </a>
+            <div id='crediti'>
+                <h2>Crediti</h2>
+                <p class='testoFinale testoCrediti'>${texts[5]}</p>
+                <h2>Ideato da:</h2>
+                <p class='testoFinale testoCrediti'>${texts[6]}</p>
+                <h2>Designers:</h2>
+                <p class='testoFinale testoCrediti'>${texts[7]}</p>
+                <h2>Developers:</h2>
+                <p class='testoFinale testoCrediti'>${texts[8]}</p>
+                <h2>Illustratrice:</h2>
+                <p class='testoFinale testoCrediti'>${texts[9]}</p>
+                <p id='lastText' class='testoFinale testoCrediti'>${texts[10]}</p>
+                <a class='linkImages' href='https://unige.it.html#crediti'><img src='images/loghi/logoUnige.svg'></a>
+            </div>
+        </div>
+    `);
+    
 }
 
 function addAnimationTextChildren() {
