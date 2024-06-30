@@ -606,6 +606,7 @@ z-index: 2;
     }
 
 /* -----------------------------menu----------------------------- */
+
 menu, ul {
     margin: 0;
     padding: 0;
@@ -642,7 +643,7 @@ menu a img {
 }
 
 #menu {
-    background-image: url("images/elementiMenu/baseMenu/baseMenu.svg");
+    background-image: url("images/menu/baseMenu.svg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -664,6 +665,7 @@ menu li a img {
     height: 100%;
 
 }
+
 /* ------------------------------------------------ */
 
 @keyframes fadeIn {
