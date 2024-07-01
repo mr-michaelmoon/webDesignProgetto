@@ -140,7 +140,7 @@ function createFramesBanner(insiemeFramesBanner) {
 
 function createFramesKids(insiemeFramesBambini) {
     for (var i = 1; i <= numFramesBambini; i++) {
-        insiemeFramesBambini.innerHTML += "<div class='frameBambini no-caret' id='frameBambini"+ i +"'><img src='images/banner_children_story/v" + i +".png'></div>";
+        insiemeFramesBambini.innerHTML += "<div class='frameBambini no-caret' id='frameBambini"+ i +"'><img src='images/banner_children_story/v" + i +".png' alt='parte di sfondo delle storie dei bambini'></div>";
         
     }
 
@@ -329,7 +329,7 @@ function addCredits() {
                 <h2>Illustratrice:</h2>
                 <p class='testoFinale testoCrediti'>${texts[9]}</p>
                 <p id='lastText' class='testoFinale testoCrediti'>${texts[10]}</p>
-                <a class='linkImages' href='https://unige.it.html#crediti'><img src='images/loghi/logoUnige.svg'></a>
+                <a class='linkImages' href='https://unige.it.html#crediti'><img src='images/loghi/logoUnige.svg' alt='Università di genova'></a>
             </div>
         </div>
     `);
