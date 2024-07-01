@@ -1,10 +1,12 @@
 
 $('body').append('<div style="" id="loadingDiv"><div class="loading"><img id="loadingBird" src="" /><h3 id="loadingText">Caricamento...</h3></div></div>');
 $(document).ready(function () { 
+	$('html').attr('style', 'overflow-y: hidden;');
+
 	var images = ['images/loading/rondineGiu_.webp', 'images/loading/rondineSu_.webp'];
 	var currentIndex = 0;
-	$('#loadingBird').load('images/loading/rondineGiu_.webp #loadingBird')
-	$('#loadingBird').load('images/loading/rondineSu_.webp #loadingBird')
+	$('#loadingBird').load('images/loading/rondineGiu_.webp #loadingBird');
+	$('#loadingBird').load('images/loading/rondineSu_.webp #loadingBird');
 
 	// Imposta l'intervallo per alternare le immagini ogni 3 secondi (3000 millisecondi)
 	const intervId = setInterval(function () {
@@ -17,6 +19,7 @@ $(document).ready(function () {
 });
 $(window).on('load', function(){
 	$('#loadingDiv').hide();
+	$('html').attr('style', 'overflow-y: scroll;');
 });
 function removeLoader(){
 	$("#loadingDiv").fadeOut(500, function() {
