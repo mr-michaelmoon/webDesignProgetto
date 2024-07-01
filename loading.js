@@ -3,6 +3,8 @@ $('body').append('<div style="" id="loadingDiv"><div class="loading"><img id="lo
 $(document).ready(function () { 
 	var images = ['images/loading/rondineGiu_.webp', 'images/loading/rondineSu_.webp'];
 	var currentIndex = 0;
+	$('#loadingBird').load('images/loading/rondineGiu_.webp #loadingBird')
+	$('#loadingBird').load('images/loading/rondineSu_.webp #loadingBird')
 
 	// Imposta l'intervallo per alternare le immagini ogni 3 secondi (3000 millisecondi)
 	const intervId = setInterval(function () {
@@ -11,7 +13,7 @@ $(document).ready(function () {
 
 		if (document.readyState === 'complete')
 			clearInterval(intervId);
-	}, 300);
+	}, 600);
 });
 $(window).on('load', function(){
 	$('#loadingDiv').hide();
