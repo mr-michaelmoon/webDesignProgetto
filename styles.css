@@ -304,13 +304,11 @@ p {
     height: 100%;
     top: 0;
     left: 0;
-    opacity: 0.7;
-    background: rgba(0,0,0,0.5);
+    background: rgb(255, 255, 255);
     z-index: 99;
 }
 #loadingBird {
     position: fixed;
-    color: chocolate;
 }
 #loadingText {
     font-family: Rouli;
